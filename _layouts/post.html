@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<div class="hentry" id="article-2">
+  <h2 class="entry-title">
+    {{ title }}
+  </h2>
+  <div class="vcard">
+    Posted by <span class="fn">Gregor Schmidt</span>
+  </div>
+  <abbr class="published" title="{{post.date | date_to_string}}">
+    ({{post.date | date_to_string}})
+  </abbr>
+  <br class="clear" />
+  <div class="entry-content">
+    {{ content }}
+  </div>
+</div>

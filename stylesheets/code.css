@@ -1,0 +1,49 @@
+#content pre{
+  color: #FFF;
+}
+pre {
+  background: #141414;
+  color: #FFF;
+  padding: 1.5em 0.5em;
+  -moz-border-radius: 5px 15px 5px 15px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-top-right-radius: 15px;
+  -webkit-border-bottom-left-radius: 15px;
+  overflow-x: auto;
+}
+
+code span.comment {
+  color: #BD48B3;
+}
+
+code span.string {
+  color: #61CE3C;
+}
+
+code span.brackets {
+}
+
+code span.symbol {
+  color: #6BCFF7;
+}
+
+code span.keywords {
+  color: #FF8400;
+}
+
+code span.erb {
+  background: #333;
+}
+
+code span.symbol {
+  color: #07DFFC;
+}
+
+code span.operators {
+  color: #FBDE2D;
+}
+
+code span.constants {
+  color: #D8FA3C;
+}
