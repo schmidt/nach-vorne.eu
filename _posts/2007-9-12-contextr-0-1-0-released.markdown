@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: ContextR 0.1.0 released
+permalink: /2007/9/12/contextr-0-1-0-released/index.html
 ---
 In the last weeks it was a bit silent around this page, my master's thesis and ContextR. This will change again and the start will be a new version of ContextR, that was just released.
 

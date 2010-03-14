@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: October's Ruby User Group Meeting
+permalink: /2007/10/5/october-s-ruby-user-group-meeting/index.html
 ---
 I just wanted to quickly share the slides from yesterday's monthly meeting.
 

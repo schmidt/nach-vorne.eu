@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: Executable code in usage examples
+permalink: /2007/9/13/executable-code-in-usage-examples/index.html
 ---
 Today I wrote a basic usage document for ContextR. It will be part of the next gem release and therefor right at the hand of the user. What hit me was, that I wanted it to be executable. It is okay to write a bit of code and surround it with comments to explain it, but what bothered me, was that I had to use puts all over to demostrate example output.
 

@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: Introducing cache_annotations the other way round
+permalink: /2007/6/1/introducing-cache_annotations-the-other-way-round/index.html
 ---
 In [one of my last articles](http://www.nach-vorne.de/2007/5/28/cache_annotations-release-to-the-wild) I introduced my [lasted gem `cache_annotations`](http://contextr.rubyforge.org/cache_annotations/rdoc/). Today I think it was explained as black vodoo, which might be uncomfortable to most readers. Therefore, I'll start again, but the otherway round and everybody will love its simplicity.
 

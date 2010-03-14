@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: Terminal Trick
+permalink: /2007/11/22/terminal-trick/index.html
 ---
 Mostly off topic, but I wanted to share it anyway.
 

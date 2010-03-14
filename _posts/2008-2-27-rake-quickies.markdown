@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: Quick Rake Goodies
+permalink: /2008/2/27/rake-quickies/index.html
 ---
 Since we are all social guys, telling everybody what we are doing right now, as often and as detailed as possible, it is just right, to do this automatically. So for everybody living on the command line and in Ruby the following quick snippets might be useful.
 

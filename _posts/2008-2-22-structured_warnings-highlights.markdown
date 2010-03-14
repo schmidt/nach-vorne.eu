@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: structured_warnings Highlights
+permalink: /2008/2/22/structured_warnings-highlights/index.html
 ---
 After my short Announcement yesterday, I'd like to go on an name some of the highlights.
 

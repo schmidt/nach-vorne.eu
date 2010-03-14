@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: Power to the People
+permalink: /2007/3/1/power-to-the-people/index.html
 ---
 <p>On <a href="http://www.antoniocangiano.com/articles/2007/02/19/ruby-implementations-shootout-ruby-vs-yarv-vs-jruby-vs-gardens-point-ruby-net-vs-rubinius-vs-cardinal">Zen and the Art of Ruby Programming</a> Antonio Cangiano compares the speed of several Ruby implementations.</p>
 

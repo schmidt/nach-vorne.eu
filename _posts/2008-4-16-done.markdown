@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: Done
+permalink: /2008/4/16/done/index.html
 ---
 Today I finished my master's thesis. Hooray. The title is "ContextR & ContextWiki - Modularisierung von Webanwendungen mit kontextorientierter Programmierung" or "Modularization of Web Applications Using Context-oriented Programming". An abstract will be available, after it was graded. The full version will be public as well, although I'm not sure when.
 

@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: Camping, Mongrel and Static Files
+permalink: /2008/1/30/camping-mongrel-and-static-files/index.html
 ---
 After some time, I continued to work on my latest Camping project. But unfortunately, I didn't work as expected. The problem is easily spotted, static files were not delivered, the dynamics were just fine.
 

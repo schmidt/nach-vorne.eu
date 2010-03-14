@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: An Editor for Ruby
+permalink: /2007/2/25/an-editor-for-ruby/index.html
 ---
 <p>In one of my first postings I'd like to mention, what I think, Ruby lacks today.</p>
 

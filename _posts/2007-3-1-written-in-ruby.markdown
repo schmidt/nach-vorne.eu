@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: Written in Ruby
+permalink: /2007/3/1/written-in-ruby/index.html
 ---
 <p>In this article I'ld like to point out, why "written in Ruby" is a pro and never a con for each Ruby related software, e.g. interpreter, libraries and IDE.</p>
 

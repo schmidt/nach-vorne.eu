@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: "[Ann] structured_warnings 0.1.0 released"
+permalink: /2008/2/21/ann-structured_warnings-0-1-0-released/index.html
 ---
 Read [this article by Daniel Berger](http://www.oreillynet.com/ruby/blog/2008/02/structured_warnings_now.html) first.
 

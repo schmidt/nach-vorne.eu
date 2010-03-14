@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: The difference between alias_method_chain and plain old super
+permalink: /2008/3/7/the-difference-between-alias_method_chain-and-plain-old-super/index.html
 ---
 Today a simple question arose. How to use `alias_method_chain` for class methods a.k.a. singleton methods a.k.a. instance specific methods for class. I just tried to answer the question, but finally I recognized, that it was't actually necessary to use `alias_method_chain` at all. The aim was to add behavior to `validates_presence_of`, an ActiveRecord method, that installs a check to ensure, that a certain value is set, before data is send to the database.
 

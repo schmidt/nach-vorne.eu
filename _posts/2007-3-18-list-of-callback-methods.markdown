@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: List of callback methods
+permalink: /2007/3/18/list-of-callback-methods/index.html
 ---
 <p>If you ever wondered about the power of <code>method_missing</code> you were still missing a lot. Ruby has a whole bunch of meta callback methods. Since I always forget some of them, I will try to collect all of them in the following list, so everybody may benefit. If I missed something, please give me a hint.</p>
 

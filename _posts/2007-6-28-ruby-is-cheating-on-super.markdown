@@ -1,6 +1,7 @@
 --- 
 layout: post
 title: Ruby is cheating on super
+permalink: /2007/6/28/ruby-is-cheating-on-super/index.html
 ---
 The super call in Ruby differs in semantics from many other oo-languages. You are not simply refering to the class definition one level above, but just the method definition one level above. Additionally you may use super without arguments to tell the interpreter to use the same ones, the current method just received.
 
