@@ -1,0 +1,82 @@
+body {
+  background-color: #336699;
+  font-family: "Gill Sans", Calibri, Helvetica, Sans-Serif;
+  color: white;
+}
+
+#container {
+  width: 600px;
+  margin: 100px auto 0px;
+}
+
+#me {
+  float: left;
+}
+
+#head {
+  text-align: right;
+}
+
+#urls {
+  float:right;
+  font-size: 1.5em;
+  width: 14em;
+}
+#urls ul {
+  margin-top: 2em;
+  padding-left: 1em;
+  list-style-type: none;
+}
+#urls ul li {
+  margin-top: 0.5em;
+}
+#tinyurls {
+  float: right;
+  width: 100%;
+  text-align: right;
+}
+#tinyurls ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+#tinyurls ul li {
+  display: inline;
+}
+
+
+a {
+  padding: 0 0.3em;
+}
+a:link, a:visited {
+  color: white;
+  text-decoration: none;
+}
+a:hover, a:active, a:focus {
+  color: #333;
+  background-color: white;
+}
+
+#meta {
+  clear:both;
+  text-align: right;
+}
+#meta address {
+  display: inline;
+  font-style: normal;
+}
+
+a.mixed:hover:after, a.english:hover:after, a.german:hover:after { 
+  color: #888; 
+  font-size: 70%; 
+  font-style: italic; 
+}
+
+a.mixed:hover:after { 
+  content: " mixed "; 
+}
+a.english:hover:after { 
+  content: " english "; 
+}
+a.german:hover:after { 
+  content: " deutsch "; 
+}
