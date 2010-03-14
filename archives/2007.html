@@ -1,0 +1,11 @@
+---
+layout: default
+title: Posts in 2007
+year: '2007'
+---
+{% for post in site.posts %}
+  {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+  {% if year == page.year %}
+    {% include post.html %}
+  {% endif %}
+{% endfor %}

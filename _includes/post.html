@@ -1,0 +1,17 @@
+<div class="hentry">
+  <h2 class="entry-title">
+    <a href="{{ post.url }}">
+      {{ post.title }}
+    </a>
+  </h2>
+  <div class="vcard">
+    Posted by <span class="fn">Gregor Schmidt</span>
+  </div>
+  <abbr class="published" title="{{ post.date }}">
+    ({{ post.date | date: '%Y-%m-%d' }})
+  </abbr>
+  <br class="clear" />
+  <div class="entry-content">
+    {{ post.content }}
+  </div>
+</div>
