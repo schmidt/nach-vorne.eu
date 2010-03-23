@@ -15,6 +15,9 @@ permalink: /2007/3/18/multiple-inheritance-without-mixins/index.html
 <li><a href="http://www.nach-vorne.de/mi/multipleinheritance_spec.rb"><code>multipleinheritance_spec.rb</code></a></li>
 </ul>
 
+<p><strong>Update:</strong> The code is now available on 
+<a href="http://github.com/schmidt/multiple_inheritance">GitHub</a></p>
+
 <h2>Specification</h2>
 
 <p>I have used Rspec to state my wishes.<br />Assuming, that <code>A</code> and <code>B</code> are direct subclasses of <code>Object</code></p>
