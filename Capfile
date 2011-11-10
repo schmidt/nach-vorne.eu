@@ -1,7 +1,7 @@
 set :username,   ENV["USER"]
-set :host,       "nach-vorne.eu"
+set :host,       "beta.nach-vorne.eu"
 
-set :remote_dir, "/var/www/nossl/nachvorne_eu"
+set :remote_dir, "/var/www/nossl/www.nach-vorne.eu"
 set :local_dir,  File.join(File.dirname(__FILE__), "_site")
 
 desc "Remove remote files"
