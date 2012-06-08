@@ -39,11 +39,11 @@
             <strong>The Ruby Ahead</strong> is my private blog. It once covered
             the development of my Master's thesis and the occompanying code.
           </p>
-          <p> 
+          <p>
             My name is Gregor Schmidt. I often use the nick name 'schmidt' or
             'schmidwisser'.
           </p>
-          <p> 
+          <p>
             I love to live in Berlin, Germany, have collected my online live at
             <a href='http://www.nach-vorne.eu'>nach-vorne.eu</a>, and currently
             employed at <a href='http://www.finn.de/'>finnlabs</a>.
@@ -60,7 +60,7 @@
             <li><a href="/about" title="about">about</a></li>
           </ul>
         </div>
-        
+
         <div class="sidebar-node">
           <div id="search" class="search">
             <script src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/cse/api/007025135729232920831/cse/owtmo__u2mu/gadget&amp;synd=open&amp;w=200&amp;h=100&amp;title=The+Ruby+Ahead+-+Site+Search&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;output=js"></script>
@@ -83,11 +83,18 @@
       </ul>
     </div>
   </div>
-  <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-  </script>
   <script type="text/javascript">
-    _uacct = "UA-510991-3";
-    urchinTracker();
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32510455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
   </script>
 </body>
 </html>
