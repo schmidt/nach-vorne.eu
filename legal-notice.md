@@ -6,6 +6,6 @@ group: navigation
 ---
 {% include JB/setup %}
 
-Gregor Schmidt
-Jungstr. 3
+Gregor Schmidt <br />
+Jungstr. 3  <br />
 10247 Berlin
