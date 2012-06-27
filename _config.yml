@@ -10,7 +10,7 @@ pygments: true
 # so be sure to set them if your theme uses them.
 #
 title : blog.schm.eu
-tagline: Site Tagline
+tagline: Just a simple blog
 author :
   name : Gregor Schmidt
   email : schmidt@nach-vorne.eu
@@ -71,7 +71,6 @@ JB :
   # Some JB helpers refer to these paths; change theme here if needed.
   #
   archive_path: /archive.html
-  categories_path : /categories.html
   tags_path : /tags.html
 
   # Settings for comments helper
@@ -99,7 +98,7 @@ JB :
   analytics :
     provider : google
     google :
-        tracking_id : 'UA-123-12'
+        tracking_id : 'UA-32956421-2'
     getclicky :
       site_id :
     mixpanel :
