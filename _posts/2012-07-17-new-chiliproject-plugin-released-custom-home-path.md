@@ -14,4 +14,5 @@ path. This might be useful, if you are using ChiliProject as a kind of CMS and
 would like to customize the first page, your users will see. You may find the
 plugin on its [GitHub project
 page](https://github.com/schmidt/chiliproject_custom_home_path). There is also a
-detailed README with all the bells and whistles.
+detailed README with installation instructions, requirements and all the bells
+and whistles.
