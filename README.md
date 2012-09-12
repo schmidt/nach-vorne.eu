@@ -4,6 +4,6 @@ future.
 They are all made with the help of the slideshow gem. To build the proper HTML
 files, run
 
-  bundle install
-  bundle exec slideshow -f https://raw.github.com/schmidt/slideshow-shower/master/shower.txt
-  bundle exec rake
+    bundle install
+    bundle exec slideshow -f https://raw.github.com/schmidt/slideshow-shower/master/shower.txt
+    bundle exec rake
