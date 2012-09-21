@@ -1,0 +1,29 @@
+---
+layout: page
+title: Just a simple blog
+tagline: Don't expect rocket sciene
+---
+{% include JB/setup %}
+
+<p>
+    This is my personal blog. It is fueled by my daily work, so expect it to be
+    technical, mostly ruby and web related. It also touches operations and may also
+    contain some links to other pages, I find interesting.
+</p>
+
+<h4>Latest posts</h4>
+
+<ul class="posts">
+    {% for post in site.blog_posts limit: 5 %}
+        <li>
+            <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
+            <span class="muted">{{ post.date | date_to_string }}</span>
+        </li>
+    {% endfor %}
+</ul>
+<hr/>
+
+<p>
+    If you are interested in my professional work, please head over to
+    <a href="https://schm.eu/">schm.eu</a>.
+</p>

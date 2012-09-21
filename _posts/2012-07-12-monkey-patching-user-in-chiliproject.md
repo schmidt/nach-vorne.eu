@@ -1,7 +1,8 @@
 ---
-title: Monkey-Patching User in ChiliProject
-layout: post
-tags : [chiliproject, plugin, ruby]
+title    : Monkey-Patching User in ChiliProject
+layout   : post
+category : blog
+tags     : [chiliproject, plugin, ruby]
 ---
 {% include JB/setup %}
 

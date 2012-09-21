@@ -1,6 +1,8 @@
 ---
-layout: post
-tags : [general, meta]
+title    : Hello, World!
+layout   : post
+category : blog
+tags     : [general, meta]
 ---
 {% include JB/setup %}
 

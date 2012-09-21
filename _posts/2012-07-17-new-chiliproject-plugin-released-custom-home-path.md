@@ -1,7 +1,8 @@
 ---
-title: "New ChiliProject Plugin Released: Custom Home Path"
-layout: post
-tags : [chiliproject, plugin, custom home path]
+title    : "New ChiliProject Plugin Released        : Custom Home Path"
+layout   : post
+category : blog
+tags     : [chiliproject, plugin, custom home path]
 ---
 {% include JB/setup %}
 

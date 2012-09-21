@@ -1,7 +1,8 @@
 ---
-title: Static Files And Bitly Proxy On Single Domain
-layout: post
-tags : [apache, static-site, bitly]
+title    : Static Files And Bitly Proxy On Single Domain
+layout   : post
+category : blog
+tags     : [apache, static-site, bitly]
 ---
 {% include JB/setup %}
 

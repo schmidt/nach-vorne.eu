@@ -1,7 +1,8 @@
 ---
-title: "Using Quicksilver as simple Pomodoro timer"
-layout: post
-tags : [productivity, mac, quicksilver]
+title    : "Using Quicksilver as simple Pomodoro timer"
+layout   : post
+category : blog
+tags     : [productivity, mac, quicksilver]
 ---
 {% include JB/setup %}
 
