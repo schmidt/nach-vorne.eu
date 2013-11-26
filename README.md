@@ -5,4 +5,4 @@ To build and deploy do the following
     gem install bundler
     bundle install
     jekyll
-    cap copy
+    rake copy
