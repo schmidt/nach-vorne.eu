@@ -1,4 +1,4 @@
---- 
+---
 layout: post
 title: attr_accessor on Steroids
 permalink: /2007/4/24/attr_accessor-on-steroids/index.html
@@ -65,10 +65,10 @@ but there is no such thing as free lunch.
 Let's look, what is already there. There is for example ActiveSupport's Module
 extension called `attr_accessor_with_default` - currently only in [the
 trunk](http://svn.rubyonrails.org/rails/trunk/activesupport/lib/active_support/core_ext/module/attr_accessor_with_default.rb).
-But it has two downsides. 
+But it has two downsides.
 
 - It does not set the actual default value, it just returns on, if there is
-  none. This may be right for certain cases, but not for me. 
+  none. This may be right for certain cases, but not for me.
 - It uses `module_eval` with a string, and we have [just
   learned](/2007/4/18/performance-of-dynamic-code-invokation), that this will
   not be good in the future
@@ -84,7 +84,7 @@ But I used that approach to implement my own idea. Its name is
 ### `attr_accessor_with_default_setter` ###
 
 <pre><code>  class Module
-    def attr_accessor_with_default_setter( *syms, &block )
+    def attr_accessor_with_default_setter( *syms, &amp;block )
       raise 'Default value in block required' unless block
       syms.each do | sym |
         module_eval do

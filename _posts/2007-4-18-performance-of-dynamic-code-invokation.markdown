@@ -1,4 +1,4 @@
---- 
+---
 layout: post
 title: Performance of Dynamic Code Invokation
 permalink: /2007/4/18/performance-of-dynamic-code-invokation/index.html
@@ -38,7 +38,7 @@ These result in the following code:
     instance = A.new
     block = lambda { true }
     b.report( "instance_eval with block" ) do
-      n.times { instance.instance_eval( &block ) }
+      n.times { instance.instance_eval( &amp;block ) }
     end
   
     instance = A.new
