@@ -1,0 +1,13 @@
+title: Portfolio - Gregor Schmidt
+email: schmidt@nach-vorne.eu
+description: >
+  Gregor Schmidt is a web developer based in Berlin, Germany. He has been
+  building web applications with Ruby on Rails since 2005 and has been part of
+  the Ruby User Group Berlin since then. He worked on his first Single-Page
+  JavaScript project in 2006. He knows Bootstrap, jQuery, Backbone and friends.
+baseurl: ""
+url: "https://schmidt.github.io"
+twitter_username: schmidtwisser
+github_username:  schmidt
+
+markdown: kramdown
