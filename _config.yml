@@ -11,3 +11,5 @@ twitter_username: schmidtwisser
 github_username:  schmidt
 
 markdown: kramdown
+exclude:
+  - README.md
