@@ -1,0 +1,15 @@
+---
+layout: gig
+title:  "Smava"
+categories: javascript training consulting implementation
+image: img/smava.png
+description: >
+  I helped [smava](https://www.smava.de) kickstart the reimplementation of their
+  signup funnel. Since new clients need to enter a lot of data, they wanted to
+  create a client-side, multi-step sign up wizard. I was training the team on
+  current JavaScript techniques and frameworks, consulting on the overall design
+  of the software, as well as helping with the implementation.
+
+---
+
+_more to come_

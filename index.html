@@ -9,6 +9,16 @@ layout: default
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h2>
+
+        <a href="{{ post.url | prepend: site.baseurl }}">
+          <img class="post-image" src="{{ post.image | prepend: site.baseurl }}" alt=""/>
+        </a>
+
+        {{ post.description | markdownify }}
+
+        <p class="post-meta">
+          {{ post.categories | array_to_sentence_string }}
+        </p>
       </li>
     {% endfor %}
   </ul>

@@ -1,4 +1,4 @@
-title: Portfolio - Gregor Schmidt
+title: Gregor Schmidt - freelance web developer
 email: schmidt@nach-vorne.eu
 description: >
   Gregor Schmidt is a web developer based in Berlin, Germany. He has been
@@ -9,6 +9,9 @@ baseurl: ""
 url: "https://schmidt.github.io"
 twitter_username: schmidtwisser
 github_username:  schmidt
+
+
+permalink: ":slug"
 
 markdown: kramdown
 exclude:

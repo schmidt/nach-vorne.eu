@@ -55,7 +55,7 @@
             display: block;
             float: right;
             width: 36px;
-            height: 26px;
+            height: 36px;
             line-height: 0;
             padding-top: 10px;
             text-align: center;
@@ -127,38 +127,32 @@
 }
 
 .footer-col-1 {
-    width: -webkit-calc(35% - (#{$spacing-unit} / 2));
-    width:         calc(35% - (#{$spacing-unit} / 2));
+    width: 35%;
 }
 
 .footer-col-2 {
-    width: -webkit-calc(20% - (#{$spacing-unit} / 2));
-    width:         calc(20% - (#{$spacing-unit} / 2));
+    width: 20%;
 }
 
 .footer-col-3 {
-    width: -webkit-calc(45% - (#{$spacing-unit} / 2));
-    width:         calc(45% - (#{$spacing-unit} / 2));
+    width: 45%;
 }
 
 @include media-query($on-laptop) {
     .footer-col-1,
     .footer-col-2 {
-        width: -webkit-calc(50% - (#{$spacing-unit} / 2));
-        width:         calc(50% - (#{$spacing-unit} / 2));
+        width: 50%;
     }
 
     .footer-col-3 {
-        width: -webkit-calc(100% - (#{$spacing-unit} / 2));
-        width:         calc(100% - (#{$spacing-unit} / 2));
+        width: 100%;
     }
 }
 
 @include media-query($on-palm) {
     .footer-col {
         float: none;
-        width: -webkit-calc(100% - (#{$spacing-unit} / 2));
-        width:         calc(100% - (#{$spacing-unit} / 2));
+        width: 100%;
     }
 }
 
@@ -178,6 +172,23 @@
 .post-list {
     margin-left: 0;
     list-style: none;
+
+    .post-image {
+      float: right;
+      width: 300px;
+      padding: $spacing-unit / 2;
+      margin: 0 $spacing-unit;
+      border: 1px solid $grey-color-light;
+
+
+      @include media-query($on-palm) {
+        float: none;
+        display:block;
+        margin: auto;
+        margin-bottom: $spacing-unit;
+        max-width: 100%;
+      }
+    }
 
     > li {
         margin-bottom: $spacing-unit;
@@ -211,6 +222,11 @@
     @include media-query($on-laptop) {
         font-size: 36px;
     }
+}
+
+.post-lead {
+    font-size: 18px;
+    margin-bottom: $spacing-unit;
 }
 
 .post-content {

@@ -1,0 +1,15 @@
+---
+layout: gig
+title:  "Planio"
+categories: ruby rails javascript cordova implementation
+image: img/planio.png
+description: >
+  Ratione fuga laboriosam eum laudantium sint et voluptatem. Et mollitia ad qui.
+  Qui recusandae voluptas dolores id vero maiores corporis voluptatem. Et omnis
+  quas fuga qui maiores consequatur vel. Et doloribus in non. Incidunt sed et
+  earum modi ad aliquam. Beatae quia cupiditate nihil voluptates velit eveniet.
+  Rem quaerat error est quisquam ducimus dolor.
+
+---
+
+_more to come_
