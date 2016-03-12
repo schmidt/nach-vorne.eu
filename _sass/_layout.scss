@@ -178,7 +178,7 @@
       width: 300px;
       padding: $spacing-unit / 2;
       margin: 0 $spacing-unit;
-      border: 1px solid $grey-color-light;
+      border: 1px solid $brand-color;
 
 
       @include media-query($on-palm) {

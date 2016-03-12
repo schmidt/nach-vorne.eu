@@ -2,7 +2,7 @@
 layout: gig
 title:  "Crewmeister"
 categories: ruby rails javascript cordova design implementation
-image: img/crewmeister.png
+image: img/crewmeister.jpg
 description: >
   Atque nesciunt adipisci facere sit rerum earum inventore. Id et itaque maiores
   sunt voluptatem quia. Itaque laboriosam et perferendis et sit repudiandae.
