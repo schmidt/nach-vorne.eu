@@ -173,26 +173,26 @@
     margin-left: 0;
     list-style: none;
 
-    .post-image {
-      float: right;
-      width: 300px;
-      padding: $spacing-unit / 2;
-      margin: 0 $spacing-unit;
-      border: 1px solid $brand-color;
-
-
-      @include media-query($on-palm) {
-        float: none;
-        display:block;
-        margin: auto;
-        margin-bottom: $spacing-unit;
-        max-width: 100%;
-      }
-    }
-
     > li {
         margin-bottom: $spacing-unit;
     }
+}
+
+.post-image {
+  float: right;
+  width: 300px;
+  padding: $spacing-unit / 2;
+  margin: 0 $spacing-unit;
+  border: 1px solid $brand-color;
+
+
+  @include media-query($on-palm) {
+    float: none;
+    display:block;
+    margin: auto;
+    margin-bottom: $spacing-unit;
+    max-width: 100%;
+  }
 }
 
 .post-meta {
