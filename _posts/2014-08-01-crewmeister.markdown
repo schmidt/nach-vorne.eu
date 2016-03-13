@@ -1,7 +1,7 @@
 ---
 layout: gig
 title:  "Crewmeister - Building a MVP with Rails and Backbone"
-categories: ruby rails javascript cordova design implementation
+categories: design implementation ruby rails javascript cordova
 image: img/crewmeister.jpg
 description: >
   Atque nesciunt adipisci facere sit rerum earum inventore. Id et itaque maiores

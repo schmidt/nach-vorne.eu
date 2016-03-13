@@ -1,7 +1,7 @@
 ---
 layout: gig
 title:  "Planio - Creating an Android and iOS App"
-categories: ruby rails javascript cordova implementation
+categories: implementation ruby rails javascript cordova
 image: img/planio.png
 description: >
   Ratione fuga laboriosam eum laudantium sint et voluptatem. Et mollitia ad qui.
