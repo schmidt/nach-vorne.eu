@@ -1,14 +1,26 @@
 ---
 layout: page
 title: About
+heading: Hi,
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+My name is Gregor Schmidt. I am a freelance web developer based in Berlin,
+Germany.
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jglovier" %} /
-[jekyll-new](https://github.com/jglovier/jekyll-new)
+I am an expert Ruby and JavaScript developer. I mainly work with Rails,
+Backbone, and Bootstrap, but I am also good at picking up new frameworks, since
+I will probably know most of their concepts from other projects.
 
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+I started to build web applications with Ruby on Rails in 2005 and I have since
+been part of the Ruby User Group Berlin. I worked on my first Single-Page
+JavaScript project in 2006. During my years of employment I was mainly working
+on the Redmine source code and writing plugins for it.
+
+Years of experience taught me to keep things simple.
+
+
+I am available for hire
+-----------------------
+
+I would love to hear, how I may help you. Just drop me a quick line at
+[schmidt@nach-vorne.eu](mailto:schmidt@nach-vorne.eu?subject=Let's%20talk!).
