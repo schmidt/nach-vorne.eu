@@ -1,6 +1,6 @@
 ---
 layout: gig
-title:  "Smava"
+title:  "Smava - Coaching and Consulting JavaScript"
 categories: javascript training consulting implementation
 image: img/smava.png
 description: >

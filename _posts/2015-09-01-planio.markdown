@@ -1,6 +1,6 @@
 ---
 layout: gig
-title:  "Planio"
+title:  "Planio - Creating an Android and iOS App"
 categories: ruby rails javascript cordova implementation
 image: img/planio.png
 description: >

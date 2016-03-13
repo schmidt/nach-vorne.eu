@@ -1,6 +1,6 @@
 ---
 layout: gig
-title:  "Crewmeister"
+title:  "Crewmeister - Building a MVP with Rails and Backbone"
 categories: ruby rails javascript cordova design implementation
 image: img/crewmeister.jpg
 description: >
