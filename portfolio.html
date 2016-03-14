@@ -1,0 +1,32 @@
+---
+layout: default
+title: Portfolio
+---
+
+<h1>Portfolio</h1>
+
+<p>Below you may find some examples of my freelance work. If you have any
+questions, just <a href="mailto:schmidt@nach-vorne.eu">drop me a line</a>. I
+would be happy to tell you more.</p>
+
+<div class="home">
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+
+        <a href="{{ post.url | prepend: site.baseurl }}">
+          <img class="post-image" src="{{ post.image | prepend: site.baseurl }}" alt=""/>
+        </a>
+
+        {{ post.description | markdownify }}
+
+        <p class="post-meta">
+          {{ post.categories | array_to_sentence_string }}
+        </p>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
