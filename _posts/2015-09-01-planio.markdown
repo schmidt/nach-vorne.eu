@@ -1,14 +1,13 @@
 ---
 layout: gig
-title:  "Planio - Creating an Android and iOS App"
+title: "Planio - Creating an Android and iOS App"
 categories: implementation ruby rails javascript cordova
 image: img/planio.png
 description: >
-  Ratione fuga laboriosam eum laudantium sint et voluptatem. Et mollitia ad qui.
-  Qui recusandae voluptas dolores id vero maiores corporis voluptatem. Et omnis
-  quas fuga qui maiores consequatur vel. Et doloribus in non. Incidunt sed et
-  earum modi ad aliquam. Beatae quia cupiditate nihil voluptates velit eveniet.
-  Rem quaerat error est quisquam ducimus dolor.
+  [Planio](https://plan.io) offers a web-based project management solution based
+  on the open source software [Redmine](https://www.redmine.org).
+  Planio wanted to open up new marketing channels by offering their product in
+  the mobile app stores.
 
 ---
 

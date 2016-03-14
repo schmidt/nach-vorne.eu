@@ -1,17 +1,18 @@
 ---
 layout: gig
-title:  "Crewmeister - Building a MVP with Rails and Backbone"
+title: "Crewmeister - Building a MVP with Rails and Backbone"
 categories: design implementation ruby rails javascript cordova
 image: img/crewmeister.jpg
 description: >
-  Atque nesciunt adipisci facere sit rerum earum inventore. Id et itaque maiores
-  sunt voluptatem quia. Itaque laboriosam et perferendis et sit repudiandae.
-  Reiciendis voluptate sapiente nesciunt debitis velit harum ad. Enim qui
-  quaerat beatae illo in. Repudiandae doloribus sunt molestias qui harum qui
-  voluptatem. Minima expedita quibusdam officiis aliquam aliquam occaecati. Aut
-  in in nulla veniam natus perferendis alias.
+  [Crewmeister](https://www.crewmeister.com/) is a software-as-a-service
+  enterprise, dedicated to help small and medium sized companies manage all the
+  necessary paper work when you are having employees. When Crewmeister was
+  founded in 2014, they were looking for a senior developer who could help
+  kickstart their platform. Together we build the first two products that would
+  become part of the crewmeister tool portfolio and launched a cross-platform
+  mobile app. About 6 months after my first day they got their first paying
+  customer.
 
 ---
 
 _more to come_
-
