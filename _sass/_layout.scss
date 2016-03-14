@@ -210,6 +210,10 @@
 /**
  * Posts
  */
+.post {
+  clear: both;
+}
+
 .post-header {
     margin-bottom: $spacing-unit;
 }
