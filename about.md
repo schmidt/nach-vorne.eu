@@ -22,5 +22,31 @@ Years of experience taught me to keep things simple.
 I am available for hire
 -----------------------
 
+If your interested in my previous work have a look at [the
+portfolio](/portfolio).
+
 I would love to hear, how I may help you. Just drop me a quick line at
 [schmidt@nach-vorne.eu](mailto:schmidt@nach-vorne.eu?subject=Let's%20talk!).
+
+
+
+<br/><br/>
+<br/><br/>
+
+
+### Legal notice
+
+
+This page is managed by
+
+<address>
+Gregor Schmidt<br/>
+Dolziger Straße 3<br/>
+<br/>
+10247 Berlin
+</address>
+
+<br/>
+
+You may reach me via mail at
+[schmidt@nach-vorne.eu](mailto:schmidt@nach-vorne.eu).
