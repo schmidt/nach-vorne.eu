@@ -111,6 +111,32 @@
 .social-media-list {
     list-style: none;
     margin-left: 0;
+
+    li {
+      display: inline;
+      white-space: nowrap;
+
+      &:after {
+        content: " - ";
+        padding: 1em;
+      }
+      &:last-child:after {
+        display: none;
+      }
+    }
+}
+@include media-query($on-laptop) {
+  .social-media-list li:after {
+    content: " ";
+  }
+}
+@include media-query($on-palm) {
+  .social-media-list li {
+    display: block;
+    &:after {
+      display: none;
+    }
+  }
 }
 
 .footer-col-wrapper {
