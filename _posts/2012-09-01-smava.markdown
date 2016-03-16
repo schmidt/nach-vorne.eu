@@ -14,4 +14,13 @@ description: >
 
 ---
 
-_more to come_
+Technologies involved
+---------------------
+
+* [RequireJS](https://requirejs.org/) - JavaScript module loader
+* [Backbone.js](http://backbonejs.org/) - JavaScript MV\* library
+* [Underscore.js](http://underscorejs.org/) - JavaScript utility library
+
+The server side rendering was implemented using JEE, while my work was limited
+to writing JSP templates and creating a set of JSTL tags to simplify the usage
+of common markup building blocks.

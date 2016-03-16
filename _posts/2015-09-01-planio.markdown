@@ -6,9 +6,23 @@ image: img/planio.png
 description: >
   [Planio](https://plan.io) offers a web-based project management solution based
   on the open source software [Redmine](https://www.redmine.org).
-  Planio wanted to open up new marketing channels by offering their product in
-  the mobile app stores.
+  Planio just updated their service to support small screen and wanted to add
+  mobile apps for Android and iOS to their offering to make it easier for users
+  to use their service on smart phones and tablets. Since I am an experienced
+  Redmine developer and since I had created a Cordova-based apps before, they
+  asked me for help. At the end of the project, we've released apps to iTunes
+  and Google Play, supporting push notifications, file downloads and basic
+  sharing functionality.
 
 ---
 
-_more to come_
+Technologies involved
+---------------------
+
+* [Ruby on Rails](https://www.rubyonrails.org) - Ruby web application framework
+* [Redmine](https://www.redmine.org/) - Open Source project management tool
+* [Apache Cordova](https://cordova.apache.org/) - Hybrid app development
+  framework
+* [Backbone.js](http://backbonejs.org/) - JavaScript MV\* library
+* [RequireJS](https://requirejs.org/) - JavaScript module loader
+* [Pure.js](https://beebole.com/pure/) - JavaScript template language

@@ -15,4 +15,11 @@ description: >
 
 ---
 
-_more to come_
+Technologies involved
+---------------------
+
+* [Ruby on Rails](https://www.rubyonrails.org) - Ruby web application framework
+* [Backbone.js](http://backbonejs.org/) - JavaScript MV\* library
+* [Underscore.js](http://underscorejs.org/) - JavaScript utility library
+* [Apache Cordova](https://cordova.apache.org/) - Hybrid app development
+  framework

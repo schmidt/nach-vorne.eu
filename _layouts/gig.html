@@ -4,15 +4,15 @@ layout: default
 <article class="post">
   <h1 class="post-title">{{ page.title }}</h1>
 
+  <p class="post-meta">
+    {{ page.categories | array_to_sentence_string }}
+  </p>
+
   <img class="post-image" src="{{ page.image | prepend: site.baseurl }}" alt=""/>
 
   <div class="post-lead">
     {{ page.description | markdownify }}
   </div>
-
-  <p class="post-meta">
-    {{ page.categories | array_to_sentence_string }}
-  </p>
 
   <div class="post-content">
     {{ content }}
