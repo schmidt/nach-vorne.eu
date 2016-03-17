@@ -208,3 +208,19 @@ pre {
         }
     }
 }
+
+/**
+ * Tables
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: $spacing-unit;
+}
+th {
+  font-weight: bold;
+}
+td, th {
+  padding: 6px 13px;
+  border: 1px solid $grey-color-light;
+}
