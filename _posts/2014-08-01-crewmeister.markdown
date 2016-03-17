@@ -9,7 +9,7 @@ description: >
   necessary paper work when you are having employees. When Crewmeister was
   founded in 2014, they were looking for a senior developer who could help
   kickstart their platform. Together we build the first two products that would
-  become part of the crewmeister tool portfolio and launched a cross-platform
+  become part of the Crewmeister tool portfolio and launched a cross-platform
   mobile app. About 6 months after my first day they got their first paying
   customer.
 
