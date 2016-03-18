@@ -1,4 +1,5 @@
 ---
+pos: 1
 layout: gig
 title: "Smava - Coaching and Consulting JavaScript"
 categories: javascript training consulting implementation

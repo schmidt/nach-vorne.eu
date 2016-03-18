@@ -25,20 +25,21 @@ title: Portfolio
 
 <div class="home">
   <ul class="post-list">
-    {% for post in site.posts %}
+    {% assign gigs = (site.portfolio | sort: 'pos') | reverse %}
+    {% for gig in gigs %}
       <li class="post">
         <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          <a class="post-link" href="{{ gig.url | prepend: site.baseurl }}">{{ gig.title }}</a>
         </h2>
 
-        <a href="{{ post.url | prepend: site.baseurl }}">
-          <img class="post-image" src="{{ post.image | prepend: site.baseurl }}" alt=""/>
+        <a href="{{ gig.url | prepend: site.baseurl }}">
+          <img class="post-image" src="{{ gig.image | prepend: site.baseurl }}" alt=""/>
         </a>
 
-        {{ post.description | markdownify }}
+        {{ gig.description | markdownify }}
 
         <p class="post-meta">
-          {{ post.categories | array_to_sentence_string }}
+          {{ gig.categories | array_to_sentence_string }}
         </p>
       </li>
     {% endfor %}

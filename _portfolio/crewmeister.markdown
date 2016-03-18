@@ -1,4 +1,5 @@
 ---
+pos: 3
 layout: gig
 title: "Crewmeister - Building a MVP with Rails and Backbone"
 categories: design implementation ruby rails javascript cordova
