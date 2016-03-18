@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Legal Notice
+title: Contact
 
 ---
 
@@ -18,6 +18,7 @@ Dolziger Straße 3<br/>
 You may reach me via mail at
 [schmidt@nach-vorne.eu](mailto:schmidt@nach-vorne.eu).
 
+<br/>
 
 Acknowledgements
 ----------------
