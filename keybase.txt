@@ -1,0 +1,68 @@
+https://keybase.io/schm
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://www.nach-vorne.eu
+  * I am schm (https://keybase.io/schm) on keybase.
+  * I have a public key with fingerprint BCA9 FF0F CCED 1E75 8EC6  EBA5 100E 8F07 8576 61EF
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.7.3"
+        },
+        "key": {
+            "fingerprint": "bca9ff0fcced1e758ec6eba5100e8f07857661ef",
+            "host": "keybase.io",
+            "key_id": "100E8F07857661EF",
+            "uid": "8f187e5741c797238755202b56058400",
+            "username": "schm"
+        },
+        "merkle_root": {
+            "ctime": 1422438483,
+            "hash": "c4884e74fda36a1a381e12a7a5c9e643da7b08d18f1baf056b87b956d986bc5a3787d650d5db594742f2127c93dea05274dfd4de25bea08cc414589ef57af7ed",
+            "seqno": 143013
+        },
+        "service": {
+            "hostname": "www.nach-vorne.eu",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1422438962,
+    "expire_in": 157680000,
+    "prev": "93065f9aac6364e8ac65484ab673223691b7b019b8e36fb5fa204c83e2d11684",
+    "seqno": 5,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1
+Comment: GPGTools - http://gpgtools.org
+
+owFVUj1rFUEUXaNRFJUk/oCEreNjvudOCrs8sBQUK3nMx528Ncnuc3fzYgwBEQS7
++AMEm4CVFlb+BMFKbNOktPIPCDrzeEEzzcyde+6Zc+6dt7cuFwvLS7ePr72e2l+X
+vv10xcOvn9lh6ZpwUG4cln6nwrrPp9ruYrlRbuOBsx0OqmatbgIOnnZrc8x6OcW2
+q5o6ochAD3h5tJ7huThW9Ra2k7bKXKXz1sRIovcYKGoJ6BU6KykhCJFokFopijFR
+jpuuv/BqOeMcVSHdJvwmDM/xm8OU25slIFLQKLWgXhvNOGgpGWFOKiJBEJKBHbZz
+S50f72atu9hu7+CobZqZYd9XOU0FY4KDAJ7U2G6cCrwAEKhFDJYrSy0HipRZbaU3
+qAQPVjsCgSYZzkYilQPtjFTBgHJeWq5BByVJkMFJI7RgkVGmveEBLZFMixCDCMik
+SzF4L6iQYDBKbaPGkOR3+KxusjhOKD/KcTutPGbduWVzZ/v7+4Pa+vHdadPWOMC9
+VDlpm77xzU5Kj/t+spGd9weTGRzdp9GcaeSqOqSp/T9WmqAXu2IUWy/x+aRqcVRl
+RJoEkLTyOzhNnIYTJaOx1iuuBELapQBhndKcMa4MdalZ1DhArqKT0TIiPHBkgVIF
+4p9XmXTarTyvaqu2/V6L5dGb4ZVieaG4uriQv21x4/rS+V9GU7x/8OTO/dNHJ49B
+DsVZ9+r36rE+K97dfPnj9CNd/aAXV4sVevLl3os/3/8C
+=yGoQ
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/schm
