@@ -20,6 +20,8 @@ Technologies involved
 ---------------------
 
 * [Ruby on Rails](https://www.rubyonrails.org) - Ruby web application framework
+* [CoffeeScript](http://coffeescript.org/) - JavaScript "dialect"
+* [Less](http://lesscss.org/) - CSS pre-processor
 * [Backbone.js](http://backbonejs.org/) - JavaScript MV\* library
 * [Underscore.js](http://underscorejs.org/) - JavaScript utility library
 * [Apache Cordova](https://cordova.apache.org/) - Hybrid app development
