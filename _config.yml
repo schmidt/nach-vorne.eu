@@ -9,6 +9,9 @@ permalink: ":slug"
 
 markdown: kramdown
 exclude:
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
   - README.md
 
 collections:
