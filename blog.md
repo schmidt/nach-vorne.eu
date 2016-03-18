@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: page
 title: Blog
+heading: Just a simple blog
 ---
-
-Just a simple blog
-==================
 
 These are the remainings of my personal blog. The content below was originally
 published on nach-vorne.de and blog.schm.eu. Unfortunately I did not manage to

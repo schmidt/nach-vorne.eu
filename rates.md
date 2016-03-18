@@ -4,8 +4,6 @@ title: Rates
 
 ---
 
-## Foreword
-
 I consider honesty and openness to be a key asset for successful business
 relations. Unfortunately I often observe the opposite: secrecy and hidden
 agendas. I do not enjoy managing secrets and private plots. The downside is that
