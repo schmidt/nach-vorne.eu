@@ -3,7 +3,7 @@ pos: 3
 layout: gig
 title: "Crewmeister - Building a MVP with Rails and Backbone"
 categories: design implementation ruby rails javascript cordova
-image: img/crewmeister.jpg
+image: crewmeister.jpg
 description: >
   [Crewmeister](https://www.crewmeister.com/) is a software-as-a-service
   enterprise, dedicated to help small and medium sized companies manage all the

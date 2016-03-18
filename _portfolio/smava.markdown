@@ -3,7 +3,7 @@ pos: 1
 layout: gig
 title: "Smava - Coaching and Consulting JavaScript"
 categories: javascript training consulting implementation
-image: img/smava.png
+image: smava.png
 description: >
   [Smava](https://www.smava.de) offers a peer-to-peer lending service as well as
   a comparison of traditional bank credit offers. I helped smava kickstart the

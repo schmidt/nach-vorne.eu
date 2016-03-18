@@ -3,7 +3,7 @@ pos: 4
 layout: gig
 title: "Planio - Creating an Android and iOS App"
 categories: implementation ruby rails javascript cordova
-image: img/planio.png
+image: planio.png
 description: >
   [Planio](https://plan.io) offers a web-based project management solution based
   on the open source software [Redmine](https://www.redmine.org).

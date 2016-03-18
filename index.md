@@ -12,6 +12,6 @@ I mainly work with Rails, **Backbone**, and **Bootstrap**, but I am also good at
 picking up new frameworks, since I will probably know most of their concepts
 from other projects.
 
-<form action="/portfolio">
+<form action="{{ "/portfolio/index" | prepend: site.baseurl }}">
   <button class="cta">See my portfolio</button>
 </form>

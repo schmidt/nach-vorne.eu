@@ -8,7 +8,7 @@ layout: default
     {{ page.categories | array_to_sentence_string }}
   </p>
 
-  <img class="post-image" src="{{ page.image | prepend: site.baseurl }}" alt=""/>
+  <img class="post-image" src="{{ page.image | prepend: "/img/" | prepend: site.baseurl }}" alt=""/>
 
   <div class="post-lead">
     {{ page.description | markdownify }}
