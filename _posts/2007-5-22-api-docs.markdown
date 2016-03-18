@@ -1,0 +1,13 @@
+--- 
+layout: post
+title: API docs
+permalink: /2007/5/22/api-docs/index.html
+---
+I'm working on and with [ContextR](http://contextr.rubyforge.org) for some time now. And since I am a proud member of the open source community, I registered ContextR at [ohloh.net](http://www.ohloh.net/projects/5037). It features a basic source code analysis, computing the lines of code for languages used and how many lines are used for comments.
+
+The latter was a weak point for ContextR. But finally I managed to add significant documentation for all public interfaces. And there we go. [ohloh](http://www.ohloh.net/projects/5037/factoids/128972) states:
+
+> Across all Ruby projects on Ohloh, 16% of all source code lines are comments. For ContextR, this 
+> figure is 22%.
+
+If you are interested in these, visit [contextr.rubyforge.org/contextr](http://contextr.rubyforge.org/contextr/).

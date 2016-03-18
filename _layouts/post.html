@@ -5,7 +5,10 @@ layout: default
   <h1 class="post-title">{{ page.title }}</h1>
 
   <p class="post-meta">
-    {{ page.tags | array_to_sentence_string }}
+    {{ page.tags | array_to_sentence_string }}<br/>
+    <a href="/">Gregor Schmidt</a>
+    -
+    <abbr class="published" title="{{ page.date }}">{{ page.date | date: '%Y-%m-%d' }}</abbr>
   </p>
 
   <div class="post-content">
