@@ -1,5 +1,7 @@
 title: Gregor Schmidt
-email: schmidt@nach-vorne.eu
+author:
+  name: Gregor Schmidt
+  email: schmidt@nach-vorne.eu
 baseurl: ""
 url: "http://www.nach-vorne.eu"
 
@@ -10,4 +12,13 @@ exclude:
   - README.md
 
 collections:
-- portfolio
+  portfolio:
+    output: true
+
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      permalink: "/:year/:month/:day/:title/"
