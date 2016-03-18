@@ -374,3 +374,16 @@
   background: $grey-color-light;
   border-radius: 5px;
 }
+
+.smallprint {
+  margin-top: $spacing-unit;
+  padding-top: $spacing-unit;
+  border-top: 1px solid $grey-color-light;
+
+  font-size: 15px;
+  color: $grey-color;
+
+  h2 {
+    font-size: 26px;
+  }
+}
