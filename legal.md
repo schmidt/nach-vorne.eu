@@ -19,8 +19,8 @@ You may reach me via mail at
 [schmidt@nach-vorne.eu](mailto:schmidt@nach-vorne.eu).
 
 
-Acknowlegments
---------------
+Acknowledgements
+----------------
 
 This page is hosted using [GitHub pages](https://pages.github.com/) and uses
 [Jekyll](https://jekyllrb.com/)'s default theme. You may inspect the sources and
