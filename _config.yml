@@ -3,7 +3,7 @@ author:
   name: Gregor Schmidt
   email: schmidt@nach-vorne.eu
 baseurl: ""
-url: "http://www.nach-vorne.eu"
+url: "https://www.nach-vorne.eu"
 
 permalink: ":slug"
 

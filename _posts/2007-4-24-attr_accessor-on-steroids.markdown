@@ -155,7 +155,7 @@ I will repeat the other values for better comparison:
 </table>
 
 ![Perfomance of Different Default Value Implementations on
-MRI](http://www.nach-vorne.de/assets/2007/4/24/graph.png)
+MRI](/assets/2007/4/24/graph.png)
 
 It performs as expected. It is as fast on initialization and consequtive
 accessing as the best in these disciplines. Only one big downside: the first

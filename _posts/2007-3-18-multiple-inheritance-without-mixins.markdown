@@ -1,21 +1,21 @@
---- 
+---
 layout: post
 title: Multiple Inheritance without MixIns
 permalink: /2007/3/18/multiple-inheritance-without-mixins/index.html
 ---
 <p>This work is based on <a href="http://blog.mauricecodik.com/2006/01/ruby-multiple-inheritance.html">Maurice Codik's</a> start from last year. I spent some hours on it today and I am willing to release it to the public. The basic implementation idea didn't change, but I had to change some strategies in order to implement a reasonable method resolution order. This may also mean, that the performance of message sends suffers from these changes. So this library is not meant to work in public software, but it may be used to fool around and see what is possible.</p>
 
-<p>My main targets where a reasonable method resolution order (namely Python-2.3's) and the functionality of the main meta object and reflection protocol of ruby (see <a href="http://www.nach-vorne.de/2007/3/18/list-of-callback-methods">this post</a> for some examples).</p>
+<p>My main targets where a reasonable method resolution order (namely Python-2.3's) and the functionality of the main meta object and reflection protocol of ruby (see <a href="/2007/3/18/list-of-callback-methods">this post</a> for some examples).</p>
 
 <h2>Download</h2>
 
 <p>You may download the library in its very first version (0.1) here. The RSpec file is available separately.</p>
 <ul>
-<li><a href="http://www.nach-vorne.de/mi/multipleinheritance.rb"><code>multipleinheritance.rb</code></a></li>
-<li><a href="http://www.nach-vorne.de/mi/multipleinheritance_spec.rb"><code>multipleinheritance_spec.rb</code></a></li>
+<li><a href="/mi/multipleinheritance.rb"><code>multipleinheritance.rb</code></a></li>
+<li><a href="/mi/multipleinheritance_spec.rb"><code>multipleinheritance_spec.rb</code></a></li>
 </ul>
 
-<p><strong>Update:</strong> The code is now available on 
+<p><strong>Update:</strong> The code is now available on
 <a href="http://github.com/schmidt/multiple_inheritance">GitHub</a></p>
 
 <h2>Specification</h2>

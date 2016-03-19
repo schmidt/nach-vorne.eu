@@ -111,7 +111,7 @@ I tested it on Ruby 1.8.6 and Ruby's YARV trunk (2007-04-12) and JRuby trunk (20
 </tbody>
 </table>
 
-![All results in a nice graph](http://www.nach-vorne.de/assets/2007/4/18/instance_eval_graph.png)
+![All results in a nice graph](/assets/2007/4/18/instance_eval_graph.png)
 
 To make it clear, I did not compare the performance of MRI with YARV or JRuby - this is done elsewhere. I also did not optimize JRuby's perfomance with some environment variables (see [this article](http://headius.blogspot.com/2007/04/paving-road-to-jruby-10-performance.html) to see what should be done). First of all, I wouldn't know which and then it wouldn't change much, because I only compare JRuby with itself. I was only interested in the fastest implementation strategie. 
 
