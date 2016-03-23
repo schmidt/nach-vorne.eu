@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Rates
+unlisted: true
 
 ---
 
