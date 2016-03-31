@@ -4,19 +4,17 @@ title: Blog
 heading: Just a simple blog
 ---
 
-These are the remainings of my personal blog. The content below was originally
-published on nach-vorne.de and blog.schm.eu. Unfortunately I did not manage to
-continue my writing, but I keep the content alive, since I think it is still
-valid. The topics were fueled by my daily work, so expect them to be technical,
-mostly ruby and web related.
+
+These is my personal blog convering technical findings of my everyday work. So
+expect the post to cover technical, mostly ruby and web related topics.
+
+Some of the content below was originally published on other sites.
 
 ## Latest posts
 
 <ul class="posts">
 {% for post in site.posts limit: 5 %}
   <li>
-    <span>{{ post.date | date: "%B %e, %Y" }}</span>
-    &raquo;
     <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
   </li>
 {% endfor %}
