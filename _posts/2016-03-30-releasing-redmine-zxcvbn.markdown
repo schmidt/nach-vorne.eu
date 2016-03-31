@@ -55,3 +55,7 @@ Installation
 Head over to [GitHub](https://github.com/schmidt/redmine_zxcvbn). You may find
 all the nitty gritty details in the README. I am missing something? Please
 create [a bug report here](https://github.com/schmidt/redmine_zxcvbn/issues).
+
+The plugin is also listed in the [Redmine Plugin
+directory](https://www.redmine.org/plugins/redmine_zxcvbn). So if you like it,
+please go there and leave a 5 star review.
