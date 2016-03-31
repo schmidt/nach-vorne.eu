@@ -378,10 +378,16 @@
 }
 
 .hireme {
-  padding: 30px;
-  margin: 30px -30px;
+  padding: $spacing-unit;
+  margin: ($spacing-unit) (-$spacing-unit);
   background: $grey-color-light;
   border-radius: 5px;
+
+  @include media-query($on-laptop) {
+    padding: $spacing-unit / 2;
+    margin: ($spacing-unit) (- $spacing-unit / 2);
+    border-radius: 0;
+  }
 }
 
 .smallprint {
@@ -425,14 +431,28 @@
 
     padding: $spacing-unit / 4;
     margin: $spacing-unit / 4;
+
+    @include media-query($on-palm) {
+      width: 100%;
+    }
   }
 
   .previous {
     float: left;
     margin-left: 0;
+
+    @include media-query($on-palm) {
+      margin-right: 0;
+      text-align: left;
+    }
   }
   .next {
     float: right;
     margin-right: 0;
+
+    @include media-query($on-palm) {
+      margin-left: 0;
+      text-align: right;
+    }
   }
 }
