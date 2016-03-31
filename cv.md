@@ -82,7 +82,7 @@ tool portfolio. Furthermore we launched a cross-platform mobile app.
 The project was build using a Ruby on Rails backend paired with a Backbone.js
 based single page app frontend written using CoffeeScript. After the first two
 minimum viable products were build, I focussed on creating a Cordova based
-hyrbrid mobile app which wraps the web app into a native application
+hybrid mobile app which wraps the web app into a native application
 environment.
 
 
