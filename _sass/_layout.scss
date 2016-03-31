@@ -262,6 +262,15 @@
 .post-content {
     margin-bottom: $spacing-unit;
 
+    img {
+      margin: auto;
+      display: block;
+
+      padding: $spacing-unit / 2;
+      border: 1px solid $grey-color-light;
+      border-radius: 5px;
+    }
+
     h2 {
         font-size: 32px;
 
@@ -390,4 +399,11 @@
 
 .twitter-tweet {
   margin: auto;
+}
+
+.author-image {
+  float: left;
+  width: 200px;
+  margin-right: $spacing-unit / 2;
+  margin-bottom: $spacing-unit / 2;
 }
