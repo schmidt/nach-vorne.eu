@@ -407,3 +407,32 @@
   margin-right: $spacing-unit / 2;
   margin-bottom: $spacing-unit / 2;
 }
+
+.previous-next {
+  padding: $spacing-unit / 2 0;
+
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  .previous,
+  .next {
+    border: 1px solid $grey-color-light;
+    border-radius: 5px;
+    display: block;
+
+    padding: $spacing-unit / 4;
+    margin: $spacing-unit / 4;
+  }
+
+  .previous {
+    float: left;
+    margin-left: 0;
+  }
+  .next {
+    float: right;
+    margin-right: 0;
+  }
+}
