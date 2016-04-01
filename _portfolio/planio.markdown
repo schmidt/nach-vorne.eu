@@ -7,7 +7,7 @@ image: planio.png
 description: >
   [Planio](https://plan.io) offers a web-based project management solution based
   on the open source software [Redmine](https://www.redmine.org).
-  Planio just updated their service to support small screen and wanted to add
+  Planio just updated their service to support small screens. They wanted to add
   mobile apps for Android and iOS to their offering to make it easier for users
   to use their service on smart phones and tablets. Since I am an experienced
   Redmine developer and since I had created
