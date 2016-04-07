@@ -1,7 +1,7 @@
 ---
 layout: post
 title: attr_accessor on Steroids
-permalink: /2007/4/24/attr_accessor-on-steroids/index.html
+permalink: /2007/4/24/attr_accessor-on-steroids
 ---
 Every Ruby programmer knows the nice metaprogramming feature of `att_reader`,
 `attr_writer`, and `attr_accessor`. You use them, I use them, everybody does.

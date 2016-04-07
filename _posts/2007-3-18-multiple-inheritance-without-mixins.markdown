@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Multiple Inheritance without MixIns
-permalink: /2007/3/18/multiple-inheritance-without-mixins/index.html
+permalink: /2007/3/18/multiple-inheritance-without-mixins
 ---
 <p>This work is based on <a href="http://blog.mauricecodik.com/2006/01/ruby-multiple-inheritance.html">Maurice Codik's</a> start from last year. I spent some hours on it today and I am willing to release it to the public. The basic implementation idea didn't change, but I had to change some strategies in order to implement a reasonable method resolution order. This may also mean, that the performance of message sends suffers from these changes. So this library is not meant to work in public software, but it may be used to fool around and see what is possible.</p>
 

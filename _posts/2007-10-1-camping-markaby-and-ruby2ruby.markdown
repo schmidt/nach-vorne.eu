@@ -1,7 +1,7 @@
---- 
+---
 layout: post
 title: Camping, Markaby and ruby2ruby
-permalink: /2007/10/1/camping-markaby-and-ruby2ruby/index.html
+permalink: /2007/10/1/camping-markaby-and-ruby2ruby
 ---
 I wanted to use [camping][camping] to a [literate programming][lit_prog] style wiki with [markaby][markaby] syntax. Literally I wanted to make the followin possible:
 

@@ -1,7 +1,7 @@
---- 
+---
 layout: post
 title: ContextR - a context-oriented programming interface for Ruby
-permalink: /2007/5/10/contextr-a-context-oriented-programming-interface-for-ruby/index.html
+permalink: /2007/5/10/contextr-a-context-oriented-programming-interface-for-ruby
 ---
 During my master's project, I am implementing an context-oriented programming (COP) language extension for Ruby - ContextR.
 

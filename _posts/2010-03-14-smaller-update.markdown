@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Smaller Update
-permalink: /2010/03/14/smaller-update.html
+permalink: /2010/03/14/smaller-update
 ---
 I just wanted to let you know, that this blog just moved from
 [mephisto](http://www.mephistoblog.com/) to [jekyll](http://www.jekyllrb.com/).

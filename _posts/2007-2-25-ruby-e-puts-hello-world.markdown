@@ -1,7 +1,7 @@
---- 
+---
 layout: post
 title: ruby -e "puts 'Hello World'"
-permalink: /2007/2/25/ruby-e-puts-hello-world/index.html
+permalink: /2007/2/25/ruby-e-puts-hello-world
 ---
 <p><del>Welcome. More to come lateron. At first I will fight with deployment.</del></p>
 <pre><code>ruby -e "puts 'Hello World'"</code></pre>

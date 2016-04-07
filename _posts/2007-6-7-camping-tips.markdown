@@ -1,7 +1,7 @@
---- 
+---
 layout: post
 title: Camping Tips
-permalink: /2007/6/7/camping-tips/index.html
+permalink: /2007/6/7/camping-tips
 ---
 I'm still in the Ruby field. I just started to look at Camping a Ruby Microframework for web applications, written by the glorious \_why. Since there is little information/documentation on the net, I'd like to point you to my favourite ones:
 

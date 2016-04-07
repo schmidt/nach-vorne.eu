@@ -1,7 +1,7 @@
---- 
+---
 layout: post
 title: cache_annotations release to the wild
-permalink: /2007/5/28/cache_annotations-release-to-the-wild/index.html
+permalink: /2007/5/28/cache_annotations-release-to-the-wild
 ---
 Ruby is all about keeping things simple, letting others do the simple work and being creative and not occupied. Have you ever thought about how often you are writing down the same idioms. Although they may look cleaner than in other languages it is cumbersome to write the same patterns over and over.
 

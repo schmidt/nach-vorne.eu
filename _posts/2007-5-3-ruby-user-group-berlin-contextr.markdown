@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ruby User Group Berlin - ContextR
-permalink: /2007/5/3/ruby-user-group-berlin-contextr/index.html
+permalink: /2007/5/3/ruby-user-group-berlin-contextr
 ---
 I will hold a short introductory talk on context-oriented programming and ContextR, which will be the basis for my master's thesis, tonight. I just finished [my slides](/assets/2007/5/3/schmidt_introduction_to_contextr.pdf) and just want to share them with you.
 

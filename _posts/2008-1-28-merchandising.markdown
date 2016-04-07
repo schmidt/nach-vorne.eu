@@ -1,7 +1,7 @@
---- 
+---
 layout: post
 title: Merchandising
-permalink: /2008/1/28/merchandising/index.html
+permalink: /2008/1/28/merchandising
 ---
 I think every great product deserves merchandising articles - so shall my thesis and ContextR. Therefore I created a logo/cartoon that represents my favourite typing discipline.
 
