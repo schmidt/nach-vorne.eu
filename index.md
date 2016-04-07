@@ -2,6 +2,7 @@
 layout: index
 ---
 
+
 Hi,
 
 My name is Gregor Schmidt. I am a freelance **Ruby** and **JavaScript** web
