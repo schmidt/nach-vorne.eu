@@ -3,6 +3,12 @@ layout: post
 title: Done
 permalink: /2008/4/16/done
 ---
-Today I finished my master's thesis. Hooray. The title is "ContextR & ContextWiki - Modularisierung von Webanwendungen mit kontextorientierter Programmierung" or "Modularization of Web Applications Using Context-oriented Programming". An abstract will be available, after it was graded. The full version will be public as well, although I'm not sure when.
+Today I finished my master's thesis. Hooray. The title is "ContextR &
+ContextWiki - Modularisierung von Webanwendungen mit kontextorientierter
+Programmierung" or "Modularization of Web Applications Using Context-oriented
+Programming". An abstract will be available, after it was graded. The full
+version will be public as well, although I'm not sure when.
 
-In the mean time, you might be happy with the code. [ContextR](https://github.com/schmidt/contextr/) and [ContextWiki](https://github.com/schmidt/context_wiki/) are available at github.
+In the mean time, you might be happy with the code.
+[ContextR](https://github.com/schmidt/contextr/) and
+[ContextWiki](https://github.com/schmidt/context_wiki/) are available at github.

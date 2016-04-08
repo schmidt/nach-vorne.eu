@@ -3,7 +3,12 @@ layout: post
 title: Introducing cache_annotations the other way round
 permalink: /2007/6/1/introducing-cache_annotations-the-other-way-round
 ---
-In [one of my last articles](/2007/5/28/cache_annotations-release-to-the-wild) I introduced my [lasted gem `cache_annotations`](http://contextr.rubyforge.org/cache_annotations/rdoc/). Today I think it was explained as black vodoo, which might be uncomfortable to most readers. Therefore, I'll start again, but the otherway round and everybody will love its simplicity.
+In [one of my last articles](/2007/5/28/cache_annotations-release-to-the-wild) I
+introduced my [lasted gem
+`cache_annotations`](http://contextr.rubyforge.org/cache_annotations/rdoc/).
+Today I think it was explained as black vodoo, which might be uncomfortable to
+most readers. Therefore, I'll start again, but the otherway round and everybody
+will love its simplicity.
 
 ## cache_annotations
 
@@ -21,7 +26,7 @@ This could look so much better:
 
     class A
       include CacheAnnotation
-      
+
       cached
       def a
         "some heavy computing that should be done only once"
@@ -43,7 +48,7 @@ vs.
 
     class A
       include CacheAnnotation
-      
+
       cached
       def b(arg0)
         "some heavy computing in respect to #{arg0} " +
@@ -53,13 +58,13 @@ vs.
 
 
 Behind the scenes, CacheAnnotation replaces the method body with the caching
-code. So the two versions are equal concerning behaviour and speed. If you
-don't want CacheAnnotation to derive the instance variable's name from the
-method name, you may supply a custom one:
+code. So the two versions are equal concerning behaviour and speed. If you don't
+want CacheAnnotation to derive the instance variable's name from the method
+name, you may supply a custom one:
 
     class A
       include CacheAnnotation
-      
+
       cached :in => :@b_cache
       def b(arg0)
         "some heavy computing in respect to #{arg0} " +
@@ -86,6 +91,8 @@ http://www.dcmanges.com/blog/27
 
 ## Final Remarks
 
-That's all the voodoo. Generating a simple method for you, basically the same thing `attr_*` does.
+That's all the voodoo. Generating a simple method for you, basically the same
+thing `attr_*` does.
 
-You will find other chunks of repeated code and you should think, if this could be stripped of and be used in a declarative way.
+You will find other chunks of repeated code and you should think, if this could
+be stripped of and be used in a declarative way.

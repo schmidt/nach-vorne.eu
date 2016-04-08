@@ -3,11 +3,17 @@ layout: post
 title: EuRuKo 2007
 permalink: /2007/9/12/euruko-2007
 ---
-Today the dates for [Euruko 2007](http://www.approximity.com/cgi-bin/europeRuby/tiki.cgi?c=v&p=Euruko07) where announced.
+Today the dates for [Euruko
+2007](http://www.approximity.com/cgi-bin/europeRuby/tiki.cgi?c=v&p=Euruko07)
+where announced.
 
 > 10th and 11th November 2007 - Vienna, Austria
 
-I would give a talk about ContextR, but this was already covered successfully by [Christian Neukirchen in 2005](http://chneukirchen.org/blog/archive/2005/10/euruko-2005-day-one.html). So it would just be an update and nothing new. But I'm really thinking about getting there and meeting other ruby guys.
+I would give a talk about ContextR, but this was already covered successfully by
+[Christian Neukirchen in
+2005](http://chneukirchen.org/blog/archive/2005/10/euruko-2005-day-one.html). So
+it would just be an update and nothing new. But I'm really thinking about
+getting there and meeting other ruby guys.
 
 
     Air Berlin charges 89 € for the tickets
@@ -19,6 +25,11 @@ That is 314 € - still the half of RailsConf Europe fee. We'll see.
 
 ### Update
 
-Today, I actually booked the flight and hotel. It is 129.00 € for the flight (Air Berlin) and 74.00 € for a half a double room, which I am sharing with [Martin](http://blog.grundrinzip.de/).
+Today, I actually booked the flight and hotel. It is 129.00 € for the flight
+(Air Berlin) and 74.00 € for a half a double room, which I am sharing with
+[Martin](http://blog.grundrinzip.de/).
 
-And on the other hand. Its not yet official, but I have heard rumors stating that RailsConf Europe 2008 will be in Berlin as well. So I'll start saving my money from now on. This will be about 50 € per month or 1.70 € a day. Stills sound like a lot of money. Anyway.
+And on the other hand. It's not yet official, but I have heard rumors stating
+that RailsConf Europe 2008 will be in Berlin as well. So I'll start saving my
+money from now on. This will be about 50 € per month or 1.70 € a day. Stills
+sound like a lot of money. Anyway.
