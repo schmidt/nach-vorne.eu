@@ -6,12 +6,17 @@ title: Contact
 
 This page is managed by
 
-<address>
-Gregor Schmidt<br/>
+<address markdown="1">
+**Gregor Schmidt**<br/>
 Dolziger Straße 3<br/>
-<br/>
+
 10247 Berlin
 </address>
+
+<span class="smallprint" markdown="1">
+<br/>
+  **VAT ID**: DE269287739
+</span>
 
 <br/>
 
