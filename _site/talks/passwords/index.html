@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Passwords - a lightning talk about password security</title>
+
+		<meta name="description" content="Passwords - a lightning talk about password security">
+		<meta name="author" content="Gregor Schmidt">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/solarized-light.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section>
+          <h1>Passwords</h1>
+					<h3>A lightning talk about password security</h3>
+					<p>
+						<small>
+              <a href="https://www.nach-vorne.eu/">Gregor Schmidt</a> /
+              <a href="https://www.rug-b.de/">rug-b</a> /
+              2016-04-07
+            </small>
+					</p>
+				</section>
+
+				<section>
+					<h2>About me</h2>
+					<p>
+            Freelance Ruby and JavaScript developer
+					</p>
+          <br/>
+          <p>
+            Go to <a href="https://www.nach-vorne.eu/">nach-vorne.eu</a> for
+            details.
+          </p>
+				</section>
+
+				<section>
+					<h2>About</h2>
+					<p>
+						Helping the user to choose adequate passwords
+					</p>
+				</section>
+
+				<section>
+          <h2><u>Not</u> About</h2>
+					<p>
+						Storing passwords securely
+					</p>
+          <p>
+            <small>
+              see <a href="https://paragonie.com/blog/2016/02/how-safely-store-password-in-2016">
+                How to Safely Store Your Users' Passwords in 2016
+              </a>
+            </small>
+          </p>
+				</section>
+
+				<section>
+          <h2>Inspired by a blog post titled</h2>
+					<p>
+            <a href="https://ryanwinchester.ca/posts/stop-forcing-your-arbitrary-password-rules-on-me">
+              <img alt="Stop forcing your arbitrary password rules on me."
+                   src="img/stop-forcing-your-arbitrary-password-rules-on-me.png" />
+            </a>
+					</p>
+          <p>
+            <small>
+              by <a href="https://ryanwinchester.ca/">
+               Ryan Winchester
+              </a>
+            </small>
+          </p>
+				</section>
+
+				<section>
+          <h2>Replace this</h2>
+
+          <p>
+            <a href="https://twitter.com/iamdevloper/status/532842741873803264">
+              <img alt="Your password must be at least 8 characters including one uppercase letter, one number, 3 Emojis &amp; the first verse of Bohemian Rhapsody."
+                   src="img/iamdevloper.png" />
+            </a>
+          </p>
+				</section>
+
+        <section>
+          <h2>With this</h2>
+          <p>
+            <a href="https://howsecureismypassword.net/">
+              <img alt="Algorithms termining the amount of time it takes to actually crack a password using brute force like approaches"
+                   src="img/password_strength.png" />
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2>Classic <br/> password requirements <br/> lead to</h2>
+
+          <ul>
+            <li>passwords that are difficult to memoize</li>
+            <li>simple passwords with <code>1Aa.</code> attached</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>How to compute password strength</h2>
+
+          <p class="fragment">
+            <a href="https://github.com/dropbox/zxcvbn">
+              <img alt="zxcvbn" src="img/zxcvbn.png" />
+            </a>
+            <br/>
+            A realistic password strength estimator.
+          </p>
+        </section>
+
+				<section>
+					<h2>ZXCVBN computes</h2>
+
+          <ul>
+            <li>estimated guesses needed to crack password</li>
+            <li>crack time estimations based on different scenarios</li>
+            <li>score from 0 (too risky) to 4 (very unguessable)</li>
+          </ul>
+				</section>
+
+				<section>
+					<h2>Available in all languages</h2>
+					<p>
+            Originally published in <strong>JavaScript</strong>, there are now
+            ports to the most popular programming languages and plugins for
+            various frameworks.
+					</p>
+          <p class="fragment">
+            ... including two ruby ports
+            <a href="https://github.com/envato/zxcvbn-ruby">[1]</a>
+            <a href="https://github.com/bitzesty/zxcvbn-js">[2]</a> and a devise
+            <a href="https://github.com/bitzesty/devise_zxcvbn">[3]</a> plugin.
+          </p>
+				</section>
+
+				<section>
+					<h2>Result</h2>
+          <p>
+            <img src="img/progress.gif" alt="" />
+            <br/>
+            <br/>
+            Client-side feedback backed by server-side validations
+          </p>
+				</section>
+
+        <section>
+          <h3>Personal wish</h3>
+          <h2 class="fragment">Death to all password requirements!</h2>
+        </section>
+
+        <section>
+          <h2>Remove requirements</h2>
+
+          <p>
+            Help users make good password choices
+
+            <br/>
+
+            <strong class="fragment">if they want to.</strong>
+          </p>
+        </section>
+
+				<section>
+					<h2>You know what's even better?</h2>
+				</section>
+
+				<section>
+					<h2>No passwords !</h2>
+				</section>
+
+        <section>
+          <h3>Alternatives</h3>
+          <h2>OAuth</h2>
+
+          <p>if your service is tightly coupled to external service</p>
+        </section>
+
+        <section>
+          <h3>Alternatives</h3>
+          <h2>Email</h2>
+
+          <p>"password reset" all the time</p>
+        </section>
+
+        <section>
+          <h2>Thanks</h2>
+
+          <p>
+            The slides are available at
+          </p>
+          <p>
+            <a href="https://www.nach-vorne.eu/talks/passwords">
+              nach-vorne.eu/talks/passwords
+            </a>
+          </p>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'none' // none/fade/slide/convex/concave/zoom
+			});
+
+		</script>
+
+    <script type="text/javascript">
+  (function () {
+    var gaProperty = "UA-32509964-1",
+        disableStr = 'ga-disable-' + gaProperty,
+        gaq = window._gaq || [];
+
+    var gaOptout = function () {
+      if ( window[disableStr] === true) {
+        alert("Google Analytics tracking has been disabled earlier.");
+      }
+      else {
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        window[disableStr] = true;
+        alert("Thank you for your understanding.\n\nGoogle Analytics is now disabled.");
+      }
+    }
+
+    var gaInstall = function () {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = 'https://ssl.google-analytics.com/ga.js';
+
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    };
+
+    gaq.push(['_setAccount', gaProperty]);
+    gaq.push(['_gat._anonymizeIp']);
+    gaq.push(['_gat._forceSSL']);
+    gaq.push(['_trackPageview']);
+
+    if (document.cookie.indexOf(disableStr + '=true') > -1) {
+      window[disableStr] = true;
+    }
+    else {
+      gaInstall();
+    }
+
+    window._gaq = gaq;
+    window.gaOptout = gaOptout;
+  })();
+</script>
+
+	</body>
+</html>
