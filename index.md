@@ -13,6 +13,6 @@ I mainly work with Rails, **Backbone**, and **Bootstrap**, but I am also good at
 picking up new frameworks, since I will probably know most of their concepts
 from other projects.
 
-<form action="{{ "/portfolio/overview" | prepend: site.baseurl }}">
+<form action="{{ "/portfolio/overview/" | prepend: site.baseurl }}">
   <button class="cta">See my portfolio</button>
 </form>
