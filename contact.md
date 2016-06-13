@@ -28,10 +28,10 @@ You may reach me via mail at
 Acknowledgements
 ----------------
 
-This page is hosted using [GitHub pages](https://pages.github.com/) and uses
+This page is hosted using [5apps.com](https://5apps.com/) and uses
 [Jekyll](https://jekyllrb.com/)'s default theme. You may inspect the sources and
 history of these pages [on
-GitHub](https://github.com/schmidt/schmidt.github.com/).
+GitHub](https://github.com/schmidt/nach-vorne.eu/).
 
 
 
