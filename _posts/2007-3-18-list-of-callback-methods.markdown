@@ -1,15 +1,15 @@
 ---
 layout: post
 title: List of callback methods
-permalink: /2007/3/18/list-of-callback-methods
+permalink: /2007/3/18/list-of-callback-methods/
+
 ---
-<p>
-  If you ever wondered about the power of <code>method_missing</code> you were
-  still missing a lot. Ruby has a whole bunch of meta callback methods. Since I
-  always forget some of them, I will try to collect all of them in the following
-  list, so everybody may benefit. If I missed something, please give me a
-  hint.
-</p>
+
+If you ever wondered about the power of <code>method\_missing</code> you were
+still missing a lot. Ruby has a whole bunch of meta callback methods. Since I
+always forget some of them, I will try to collect all of them in the following
+list, so everybody may benefit. If I missed something, please give me a
+hint.
 
 <table>
   <thead><tr><th>Class</th><th>Name</th><th>corresponds to</th></tr></thead>
@@ -34,15 +34,11 @@ permalink: /2007/3/18/list-of-callback-methods
   </tbody>
 </table>
 
-<p>
-  Most of this list is taken from <a
-  href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/120436">this
-  discussion on ruby-talk</a>.
-</p>
+Most of this list is taken from <a
+href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/120436">this
+discussion on ruby-talk</a>.
 
-<p>
-  And of course there are all these nice collections, you may request.
-</p>
+And of course there are all these nice collections, you may request.
 
 <table>
   <thead><tr><th>Class</th><th>Name</th><th>include super</th></tr></thead>
@@ -65,15 +61,11 @@ permalink: /2007/3/18/list-of-callback-methods
   </tbody>
 </table>
 
-<p>
-  Please note, that most of the <code>*methods</code> have a parameter, which
-  allows you to exclude inherited properties from the answer (as listed in the
-  table).
-</p>
+Please note, that most of the <code>\*methods</code> have a parameter, which
+allows you to exclude inherited properties from the answer (as listed in the
+table).
 
-<p>
-  Every ambitous Ruby programmer should have a look at these and come back each
-  one or two months. These methods will allow you some shortcuts and more
-  elegant solutions. As well, make sure, that these still work, after you
-  introduced changes on the meta-level.
-</p>
+Every ambitous Ruby programmer should have a look at these and come back each
+one or two months. These methods will allow you some shortcuts and more elegant
+solutions. As well, make sure, that these still work, after you introduced
+changes on the meta-level.

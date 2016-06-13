@@ -3,6 +3,7 @@ title    : Static Files And Bitly Proxy On Single Domain
 layout   : post
 category : blog
 tags     : [apache, static-site, bitly]
+
 ---
 
 When having a super short domain name, you're probably using

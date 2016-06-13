@@ -1,8 +1,10 @@
 ---
 layout: post
 title: Lax Specs
-permalink: /2007/6/1/lax-specs
+permalink: /2007/6/1/lax-specs/
+
 ---
+
 Partly off topic, but we are all in the software business and every reader will
 know what I am talking about.
 

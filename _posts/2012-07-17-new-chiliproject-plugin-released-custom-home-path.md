@@ -1,8 +1,9 @@
 ---
-title    : "New ChiliProject Plugin Released        : Custom Home Path"
+title    : "New ChiliProject Plugin Released: Custom Home Path"
 layout   : post
 category : blog
 tags     : [chiliproject, plugin, custom home path]
+
 ---
 
 I have just released a new [ChiliProject](https://www.chiliproject.org/) plugin.

@@ -3,6 +3,7 @@ title    : "Releasing redmine_zxcvbn 1.0.0"
 layout   : post
 category : blog
 tags     : [redmine, security, plugin]
+
 ---
 
 Today I stumbled upon an article named [Stop forcing your arbitrary password

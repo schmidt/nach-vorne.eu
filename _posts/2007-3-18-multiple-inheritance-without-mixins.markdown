@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Multiple Inheritance without MixIns
-permalink: /2007/3/18/multiple-inheritance-without-mixins
+permalink: /2007/3/18/multiple-inheritance-without-mixins/
+
 ---
 
 This work is based on <a

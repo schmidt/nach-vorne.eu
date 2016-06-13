@@ -1,8 +1,10 @@
 ---
 layout: post
 title: Mephisto Bloglines Plugin
-permalink: /2007/3/3/mephisto-bloglines-plugin
+permalink: /2007/3/3/mephisto-bloglines-plugin/
+
 ---
+
 In order to prove my latest theory (ref: <a
 href="/2007/3/1/written-in-ruby">Written in Ruby</a>) I just wrote my first
 Mephisto Plugin. You are now able to include your <a

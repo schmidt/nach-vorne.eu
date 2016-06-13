@@ -1,8 +1,10 @@
 ---
 layout: post
 title: Seven Things
-permalink: /2009/1/23/seven-things
+permalink: /2009/1/23/seven-things/
+
 ---
+
 It was way too long ago, that this site was updated. Sorry for that. Let's use
 [this meme](http://upstream-berlin.com/2009/01/22/seven-things/) as opportunity
 to start again.

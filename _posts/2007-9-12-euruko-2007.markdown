@@ -1,8 +1,10 @@
 ---
 layout: post
 title: EuRuKo 2007
-permalink: /2007/9/12/euruko-2007
+permalink: /2007/9/12/euruko-2007/
+
 ---
+
 Today the dates for [Euruko
 2007](http://www.approximity.com/cgi-bin/europeRuby/tiki.cgi?c=v&p=Euruko07)
 where announced.

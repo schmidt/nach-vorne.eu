@@ -1,8 +1,10 @@
 ---
 layout: post
 title: undef_method != remove_method
-permalink: /2008/2/28/undef_method-remove_method
+permalink: /2008/2/28/undef_method-remove_method/
+
 ---
+
 When trying to remove behavior from your classes or objects, you will quickly
 stumble upon `undef_method` and `remove_method`. Even when your are just trying
 to change an implementation you will need one of these. Otherwise Ruby will warn

@@ -1,8 +1,10 @@
 ---
 layout: post
 title: Terminal Trick
-permalink: /2007/11/22/terminal-trick
+permalink: /2007/11/22/terminal-trick/
+
 ---
+
 Mostly off topic, but I wanted to share it anyway.
 
 We terminal cowboys often have the same problem. I'm in my current workspace,

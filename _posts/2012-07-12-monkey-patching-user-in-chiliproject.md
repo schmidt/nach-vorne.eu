@@ -3,6 +3,7 @@ title    : Monkey-Patching User in ChiliProject
 layout   : post
 category : blog
 tags     : [chiliproject, plugin, ruby]
+
 ---
 
 Here is how to patch the `User` model within a ChiliProject plugin.

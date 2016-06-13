@@ -1,8 +1,10 @@
 ---
 layout: post
 title: International Methods
-permalink: /2007/3/24/international-methods
+permalink: /2007/3/24/international-methods/
+
 ---
+
 I just recognized, that after setting the <code>$KCODE</code> to
 <code>"u"</code>, either via command line (<code>[ruby|irb] -Ku</code>) or
 within the script, international method names are allowed in Ruby. Examples for

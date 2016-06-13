@@ -1,8 +1,10 @@
 ---
 layout: post
 title: Introducing cache_annotations the other way round
-permalink: /2007/6/1/introducing-cache_annotations-the-other-way-round
+permalink: /2007/6/1/introducing-cache_annotations-the-other-way-round/
+
 ---
+
 In [one of my last articles](/2007/5/28/cache_annotations-release-to-the-wild) I
 introduced my [lasted gem
 `cache_annotations`](http://contextr.rubyforge.org/cache_annotations/rdoc/).

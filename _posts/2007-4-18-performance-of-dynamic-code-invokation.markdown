@@ -1,8 +1,10 @@
 ---
 layout: post
 title: Performance of Dynamic Code Invokation
-permalink: /2007/4/18/performance-of-dynamic-code-invokation
+permalink: /2007/4/18/performance-of-dynamic-code-invokation/
+
 ---
+
 In my new project I need to surround basic method with some wrapping code, which
 should be called dynamically, e.g. not each time, but under certain
 circumstances. In a first implementation by [Christian

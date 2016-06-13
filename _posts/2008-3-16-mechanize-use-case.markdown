@@ -1,8 +1,10 @@
 ---
 layout: post
 title: Mechanize Use Case
-permalink: /2008/3/16/mechanize-use-case
+permalink: /2008/3/16/mechanize-use-case/
+
 ---
+
 I'm using [www.bibsonomy.org](http://www.bibsonomy.org) to manage my bibtex
 entries. This is a must have, when writing any scientific paper. Bibsonomy is
 like del.icio.us just for bibtex. Among the social and webscraping features to

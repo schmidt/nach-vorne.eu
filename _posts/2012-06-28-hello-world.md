@@ -3,6 +3,7 @@ title    : Hello, World!
 layout   : post
 category : blog
 tags     : [general, meta]
+
 ---
 
 I'm starting my own business so I should have my own website again.
