@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Static Files And Bitly Proxy On Single Domain - Gregor Schmidt</title>
+  <title>Multiple Inheritance without MixIns - Gregor Schmidt</title>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="https://www.nach-vorne.eu/2012/07/16/static-files-and-bitly-proxy-on-single-domain/">
+  <link rel="canonical" href="https://www.nach-vorne.eu/2007/3/18/multiple-inheritance-without-mixins/">
   <link rel="alternate" type="application/atom+xml" title="www.nach-vorne.eu" href="/feeds/atom.xml" />
 </head>
 
@@ -84,84 +84,109 @@
     <div class="page-content">
       <div class="wrapper">
         <article class="post">
-  <h1 class="post-title">Static Files And Bitly Proxy On Single Domain</h1>
+  <h1 class="post-title">Multiple Inheritance without MixIns</h1>
 
   <p class="post-meta">
-    apache, static-site, and bitly<br/>
+    <br/>
     <a href="/">Gregor Schmidt</a>
     -
-    <abbr class="published" title="2012-07-16 00:00:00 +0200">2012-07-16</abbr>
+    <abbr class="published" title="2007-03-18 00:00:00 +0100">2007-03-18</abbr>
   </p>
 
   <div class="post-content">
-    <p>When having a super short domain name, you’re probably using
-<a href="http://bitly.com">Bitly</a>’s service to run you custom-looking URL shortener with
-full client support and nearly no setup costs.</p>
+    <p>This work is based on <a href="http://blog.mauricecodik.com/2006/01/ruby-multiple-inheritance.html">Maurice
+Codik’s</a> start from last year. I spent some hours on it today and I am
+willing to release it to the public. The basic implementation idea didn’t
+change, but I had to change some strategies in order to implement a reasonable
+method resolution order. This may also mean, that the performance of message
+sends suffers from these changes. So this library is not meant to work in public
+software, but it may be used to fool around and see what is possible.</p>
 
-<p>But then you might ask yourself, why can’t I also have my simple static website
-on the same domain? Well, you can.</p>
+<p>My main targets where a reasonable method resolution order (namely
+Python-2.3’s) and the functionality of the main meta object and reflection
+protocol of ruby (see <a href="/2007/3/18/list-of-callback-methods">this
+post</a> for some examples).</p>
 
-<h2 id="set-up-apache2-to-serve-files-and-short-urls">Set up Apache2 to serve files and short URLs</h2>
+<h3 id="download">Download</h3>
 
-<p>Using the following Apache VHost configuration, Apache will answer all
-requests locally, that match files within a certain directory. All other
-requests will be proxied to Bitly.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;VirtualHost *:80&gt;
-
-    # These rules just set up the serving of the static files
-    ServerName short.com
-    DocumentRoot /var/www/short.com
-
-    &lt;Directory /var/www/short.com/&gt;
-        Options FollowSymLinks
-        AllowOverride None
-        Order allow,deny
-        Allow from all
-    &lt;/Directory&gt;
-
-    # Now we're getting to the interesting parts
-    RewriteEngine On
-
-    # Make sure, that / is associated with your index.html document
-    RewriteRule ^/$ /index.html [QSA]
-
-    # Set's up a conditional rewrite
-    # When a local file is not found
-    RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
-    # the request is proxied to http://bit.ly/
-    RewriteRule ^/(.*)$ http://bit.ly/$1 [P,QSA,L]
-&lt;/VirtualHost&gt;
-</code></pre>
-</div>
-
-<p>There are some things to note.</p>
+<p>You may download the library in its very first version (0.1) here. The RSpec
+file is available separately.</p>
 
 <ul>
-  <li>To make this work, you also need to ignore Bitly’s setup instructions and
-point your domain’s DNS record to your own server and not Bitly’s.</li>
-  <li>This works just because Bitly’s slugs are globally uniq and not tied to a
-single domain. So <code class="highlighter-rouge">http://short.com/NArkjI</code> will point to the same URL as
-<code class="highlighter-rouge">http://bit.ly/NArkjI</code>.</li>
-  <li>Every URL, that cannot be matched to your files, will be proxied to bitly.com,
-including <code class="highlighter-rouge">favicon.ico</code> and <code class="highlighter-rouge">robots.txt</code>. Also, this way Bitly may get a bit
-too much information, you might not want to share with them.</li>
-  <li>404 error pages are delivered by Bitly, what might confuse your users. This
-might be fixable with some more configuration.</li>
-  <li>This setup is, of course, slower than the recommended setup where you change
-your DNS record. So do not use it on high traffic sites without further
-investigation.</li>
+  <li><a href="/mi/multipleinheritance.rb"><code>multipleinheritance.rb</code></a></li>
+  <li><a href="/mi/multipleinheritance_spec.rb"><code>multipleinheritance_spec.rb</code></a></li>
 </ul>
+
+<p><strong>Update:</strong> The code is now available on <a href="http://github.com/schmidt/multiple_inheritance">GitHub</a>.</p>
+
+<h3 id="specification">Specification</h3>
+
+<p>I have used Rspec to state my wishes.<br />Assuming, that <code>A</code> and
+<code>B</code> are direct subclasses of <code>Object</code></p>
+
+<p>A subclass of <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code></p>
+
+<ul>
+  <li>should answer with <code class="highlighter-rouge">[A, B]</code> when sended <code class="highlighter-rouge">superclasses</code></li>
+  <li>should not list constants defined in its superclasses, when sent <code class="highlighter-rouge">constants</code></li>
+  <li>should not answer <code class="highlighter-rouge">true</code> to <code class="highlighter-rouge">const_defined?</code> for constants defined in <code class="highlighter-rouge">A</code> or <code class="highlighter-rouge">B</code></li>
+  <li>should answer <code class="highlighter-rouge">true</code> to <code class="highlighter-rouge">const_defined?</code> for constants defined in it</li>
+  <li>should list methods of its superclasses in <code class="highlighter-rouge">instance_methods( true )</code></li>
+</ul>
+
+<p>The Ancestors of a subclass of <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code></p>
+
+<ul>
+  <li>should contain <code class="highlighter-rouge">A</code>, <code class="highlighter-rouge">B</code> and <code class="highlighter-rouge">Object</code></li>
+  <li>should have <code class="highlighter-rouge">A</code> as first element</li>
+  <li>should not include double entries</li>
+  <li>should contain <code class="highlighter-rouge">A</code> before <code class="highlighter-rouge">B</code></li>
+  <li>should contain <code class="highlighter-rouge">B</code> before <code class="highlighter-rouge">Object</code></li>
+</ul>
+
+<p>An instance of a subclass of <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code></p>
+
+<ul>
+  <li>should be kind of its class</li>
+  <li>should be kind of its super classes</li>
+  <li>should be kind of its super super classes</li>
+  <li>should prefer its own methods over inherited ones</li>
+  <li>should be able to call inherited methods</li>
+  <li>should be able to combine inherited calls</li>
+  <li>should prefer methods defined in <code class="highlighter-rouge">A</code> over <code class="highlighter-rouge">Object</code>’s</li>
+  <li>should prefer methods defined in <code class="highlighter-rouge">B</code> over <code class="highlighter-rouge">Object</code>’s</li>
+  <li>should prefer methods defined in <code class="highlighter-rouge">A</code> over <code class="highlighter-rouge">B</code>’s (left first)</li>
+  <li>should be able to use <code class="highlighter-rouge">method_missing</code></li>
+  <li>should be able to use <code class="highlighter-rouge">method_missing</code> in one of its parents</li>
+  <li>should answer <code class="highlighter-rouge">respond_to?( 'some method in A' )</code> with <code class="highlighter-rouge">true</code></li>
+  <li>should answer <code class="highlighter-rouge">respond_to?( 'some method in B' )</code> with <code class="highlighter-rouge">true</code></li>
+  <li>should answer <code class="highlighter-rouge">respond_to?( 'some method in Object' )</code> with <code class="highlighter-rouge">true</code></li>
+  <li>should be able to access constants defined in superclasses directly</li>
+  <li>should be able to use <code class="highlighter-rouge">const_missing</code></li>
+  <li>should list methods of its superclasses in <code class="highlighter-rouge">methods</code></li>
+  <li>should be able to use methods from <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code> using own instance variables</li>
+  <li>should be able to use blocks for methods in superclasses</li>
+</ul>
+
+<p>When <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code> are subclassed by a class, they</p>
+
+<ul>
+  <li>should be informed via <code class="highlighter-rouge">self.inherited( subclass )</code></li>
+</ul>
+
+<p>I did not yet work on instance or class variables, as well as the behaviour of
+private or protected methods (who uses them anyway?). Please send me your ideas
+or bug reports. I am sure, that this is far from perfect.</p>
 
   </div>
 </article>
 
 <div class="previous-next">
   
-    <a class="previous" href="/2012/07/12/monkey-patching-user-in-chiliproject/">&laquo; Monkey-Patching User in ChiliProject</a>
+    <a class="previous" href="/2007/3/18/list-of-callback-methods/">&laquo; List of callback methods</a>
   
   
-    <a class="next" href="/2012/07/17/new-chiliproject-plugin-released-custom-home-path/">New ChiliProject Plugin Released: Custom Home Path &raquo;</a>
+    <a class="next" href="/2007/3/24/international-methods/">International Methods &raquo;</a>
   
 </div>
 

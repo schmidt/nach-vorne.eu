@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Static Files And Bitly Proxy On Single Domain - Gregor Schmidt</title>
+  <title>List of callback methods - Gregor Schmidt</title>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="https://www.nach-vorne.eu/2012/07/16/static-files-and-bitly-proxy-on-single-domain/">
+  <link rel="canonical" href="https://www.nach-vorne.eu/2007/3/18/list-of-callback-methods/">
   <link rel="alternate" type="application/atom+xml" title="www.nach-vorne.eu" href="/feeds/atom.xml" />
 </head>
 
@@ -84,84 +84,89 @@
     <div class="page-content">
       <div class="wrapper">
         <article class="post">
-  <h1 class="post-title">Static Files And Bitly Proxy On Single Domain</h1>
+  <h1 class="post-title">List of callback methods</h1>
 
   <p class="post-meta">
-    apache, static-site, and bitly<br/>
+    <br/>
     <a href="/">Gregor Schmidt</a>
     -
-    <abbr class="published" title="2012-07-16 00:00:00 +0200">2012-07-16</abbr>
+    <abbr class="published" title="2007-03-18 00:00:00 +0100">2007-03-18</abbr>
   </p>
 
   <div class="post-content">
-    <p>When having a super short domain name, you’re probably using
-<a href="http://bitly.com">Bitly</a>’s service to run you custom-looking URL shortener with
-full client support and nearly no setup costs.</p>
+    <p>If you ever wondered about the power of <code>method\_missing</code> you were
+still missing a lot. Ruby has a whole bunch of meta callback methods. Since I
+always forget some of them, I will try to collect all of them in the following
+list, so everybody may benefit. If I missed something, please give me a
+hint.</p>
 
-<p>But then you might ask yourself, why can’t I also have my simple static website
-on the same domain? Well, you can.</p>
+<table>
+  <thead><tr><th>Class</th><th>Name</th><th>corresponds to</th></tr></thead>
+  <tbody>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001683">included</a></td></tr>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001684">extended</a></td></tr>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001659">append_feature</a></td><td>include?</td></tr>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001716">const_missing</a></td><td>const_defined?</td></tr>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001685">method_added</a></td></tr>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001686">method_removed</a></td></tr>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001687">method_undefined</a></td></tr>
+    <tr><td>Class</td><td><a href="http://ruby-doc.org/core/classes/Class.html#M002812">inherited</a></td></tr>
+    <tr><td>Object</td><td><a href="http://ruby-doc.org/core/classes/Object.html#M000372">singleton_method_added</a></td></tr>
+    <tr><td>Object</td><td><a href="http://ruby-doc.org/core/classes/Object.html#M000373">singleton_method_removed</a></td></tr>
+    <tr><td>Object</td><td><a href="http://ruby-doc.org/core/classes/Object.html#M000374">singleton_method_undefined</a></td></tr>
+    <tr><td>Kernel</td><td><a href="http://ruby-doc.org/core/classes/Kernel.html#M005936">at_exit</a></td></tr>
+    <tr><td>Kernel</td><td><a href="http://ruby-doc.org/core/classes/Kernel.html#M005929">method_missing</a></td><td>respond_to?</td></tr>
+    <tr><td>Kernel</td><td><a href="http://ruby-doc.org/core/classes/Kernel.html#M005943">set_trace_func</a></td></tr>
+    <tr><td>Kernel</td><td><a href="http://ruby-doc.org/core/classes/Kernel.html#M005941">trace_var</a></td></tr>
+    <tr><td>Kernel</td><td><a href="http://ruby-doc.org/core/classes/Kernel.html#M005942">untrace_var</a></td></tr>
+    <tr><td>ObjectSpace</td><td><a href="http://ruby-doc.org/core/classes/ObjectSpace.html#M006763">each_object</a></td></tr>
+  </tbody>
+</table>
 
-<h2 id="set-up-apache2-to-serve-files-and-short-urls">Set up Apache2 to serve files and short URLs</h2>
+<p>Most of this list is taken from <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/120436">this
+discussion on ruby-talk</a>.</p>
 
-<p>Using the following Apache VHost configuration, Apache will answer all
-requests locally, that match files within a certain directory. All other
-requests will be proxied to Bitly.</p>
+<p>And of course there are all these nice collections, you may request.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;VirtualHost *:80&gt;
+<table>
+  <thead><tr><th>Class</th><th>Name</th><th>include super</th></tr></thead>
+  <tbody>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001700">ancestors</a></td></tr>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001679">constants</a></td></tr>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001697">included_modules</a></td></tr>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001706">instance_methods</a></td><td><code>true</code></td></tr>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001709">private_instance_methods</a></td><td><code>true</code></td></tr>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001708">protected_instance_methods</a></td><td><code>true</code></td></tr>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001707">public_instance_methods</a></td><td><code>true</code></td></tr>
+    <tr><td>Module</td><td><a href="http://ruby-doc.org/core/classes/Module.html#M001717">class_variables</a></td></tr>
+    <tr><td>Class</td><td><a href="http://ruby-doc.org/core/classes/Class.html#M002816">superclass</a></td></tr>
+    <tr><td>Object</td><td><a href="http://ruby-doc.org/core/classes/Object.html#M000359">methods</a></td></tr>
+    <tr><td>Object</td><td><a href="http://ruby-doc.org/core/classes/Object.html#M000362">private_methods</a></td><td><code>true</code></td></tr>
+    <tr><td>Object</td><td><a href="http://ruby-doc.org/core/classes/Object.html#M000361">protected_methods</a></td><td><code>true</code></td></tr>
+    <tr><td>Object</td><td><a href="http://ruby-doc.org/core/classes/Object.html#M000363">public_methods</a></td><td><code>true</code></td></tr>
+    <tr><td>Object</td><td><a href="http://ruby-doc.org/core/classes/Object.html#M000360">singleton_methods</a></td><td><code>true</code></td></tr>
+    <tr><td>Object</td><td><a href="http://ruby-doc.org/core/classes/Object.html#M000364">instance_variables</a></td></tr>
+  </tbody>
+</table>
 
-    # These rules just set up the serving of the static files
-    ServerName short.com
-    DocumentRoot /var/www/short.com
+<p>Please note, that most of the <code>\*methods</code> have a parameter, which
+allows you to exclude inherited properties from the answer (as listed in the
+table).</p>
 
-    &lt;Directory /var/www/short.com/&gt;
-        Options FollowSymLinks
-        AllowOverride None
-        Order allow,deny
-        Allow from all
-    &lt;/Directory&gt;
-
-    # Now we're getting to the interesting parts
-    RewriteEngine On
-
-    # Make sure, that / is associated with your index.html document
-    RewriteRule ^/$ /index.html [QSA]
-
-    # Set's up a conditional rewrite
-    # When a local file is not found
-    RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
-    # the request is proxied to http://bit.ly/
-    RewriteRule ^/(.*)$ http://bit.ly/$1 [P,QSA,L]
-&lt;/VirtualHost&gt;
-</code></pre>
-</div>
-
-<p>There are some things to note.</p>
-
-<ul>
-  <li>To make this work, you also need to ignore Bitly’s setup instructions and
-point your domain’s DNS record to your own server and not Bitly’s.</li>
-  <li>This works just because Bitly’s slugs are globally uniq and not tied to a
-single domain. So <code class="highlighter-rouge">http://short.com/NArkjI</code> will point to the same URL as
-<code class="highlighter-rouge">http://bit.ly/NArkjI</code>.</li>
-  <li>Every URL, that cannot be matched to your files, will be proxied to bitly.com,
-including <code class="highlighter-rouge">favicon.ico</code> and <code class="highlighter-rouge">robots.txt</code>. Also, this way Bitly may get a bit
-too much information, you might not want to share with them.</li>
-  <li>404 error pages are delivered by Bitly, what might confuse your users. This
-might be fixable with some more configuration.</li>
-  <li>This setup is, of course, slower than the recommended setup where you change
-your DNS record. So do not use it on high traffic sites without further
-investigation.</li>
-</ul>
+<p>Every ambitous Ruby programmer should have a look at these and come back each
+one or two months. These methods will allow you some shortcuts and more elegant
+solutions. As well, make sure, that these still work, after you introduced
+changes on the meta-level.</p>
 
   </div>
 </article>
 
 <div class="previous-next">
   
-    <a class="previous" href="/2012/07/12/monkey-patching-user-in-chiliproject/">&laquo; Monkey-Patching User in ChiliProject</a>
+    <a class="previous" href="/2007/3/3/mephisto-bloglines-plugin/">&laquo; Mephisto Bloglines Plugin</a>
   
   
-    <a class="next" href="/2012/07/17/new-chiliproject-plugin-released-custom-home-path/">New ChiliProject Plugin Released: Custom Home Path &raquo;</a>
+    <a class="next" href="/2007/3/18/multiple-inheritance-without-mixins/">Multiple Inheritance without MixIns &raquo;</a>
   
 </div>
 

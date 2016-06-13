@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Static Files And Bitly Proxy On Single Domain - Gregor Schmidt</title>
+  <title>attr_accessor on Steroids - Gregor Schmidt</title>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="https://www.nach-vorne.eu/2012/07/16/static-files-and-bitly-proxy-on-single-domain/">
+  <link rel="canonical" href="https://www.nach-vorne.eu/2007/4/24/attr_accessor-on-steroids/">
   <link rel="alternate" type="application/atom+xml" title="www.nach-vorne.eu" href="/feeds/atom.xml" />
 </head>
 
@@ -84,84 +84,197 @@
     <div class="page-content">
       <div class="wrapper">
         <article class="post">
-  <h1 class="post-title">Static Files And Bitly Proxy On Single Domain</h1>
+  <h1 class="post-title">attr_accessor on Steroids</h1>
 
   <p class="post-meta">
-    apache, static-site, and bitly<br/>
+    <br/>
     <a href="/">Gregor Schmidt</a>
     -
-    <abbr class="published" title="2012-07-16 00:00:00 +0200">2012-07-16</abbr>
+    <abbr class="published" title="2007-04-24 00:00:00 +0200">2007-04-24</abbr>
   </p>
 
   <div class="post-content">
-    <p>When having a super short domain name, you’re probably using
-<a href="http://bitly.com">Bitly</a>’s service to run you custom-looking URL shortener with
-full client support and nearly no setup costs.</p>
+    <p>Every Ruby programmer knows the nice metaprogramming feature of <code class="highlighter-rouge">att_reader</code>,
+<code class="highlighter-rouge">attr_writer</code>, and <code class="highlighter-rouge">attr_accessor</code>. You use them, I use them, everybody does.
+There is nothing wrong with them. But how often do you write things like this:</p>
 
-<p>But then you might ask yourself, why can’t I also have my simple static website
-on the same domain? Well, you can.</p>
+<pre><code>  class Foo
+    attr_accessor :bar
 
-<h2 id="set-up-apache2-to-serve-files-and-short-urls">Set up Apache2 to serve files and short URLs</h2>
-
-<p>Using the following Apache VHost configuration, Apache will answer all
-requests locally, that match files within a certain directory. All other
-requests will be proxied to Bitly.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;VirtualHost *:80&gt;
-
-    # These rules just set up the serving of the static files
-    ServerName short.com
-    DocumentRoot /var/www/short.com
-
-    &lt;Directory /var/www/short.com/&gt;
-        Options FollowSymLinks
-        AllowOverride None
-        Order allow,deny
-        Allow from all
-    &lt;/Directory&gt;
-
-    # Now we're getting to the interesting parts
-    RewriteEngine On
-
-    # Make sure, that / is associated with your index.html document
-    RewriteRule ^/$ /index.html [QSA]
-
-    # Set's up a conditional rewrite
-    # When a local file is not found
-    RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
-    # the request is proxied to http://bit.ly/
-    RewriteRule ^/(.*)$ http://bit.ly/$1 [P,QSA,L]
-&lt;/VirtualHost&gt;
+    def initialize
+      self.bar = Hash.new
+    end
+  end
 </code></pre>
-</div>
 
-<p>There are some things to note.</p>
+<p>Or as well something like this:</p>
+
+<pre><code>  class Foo
+    attr_writer :foo
+    def foo
+      @foo ||= Hash.new
+    end
+  end
+</code></pre>
+
+<p>I do. And this is simply annoying. It’s not nice and slow in certain occasions.
+I will support this with some easy benchmarks in MRI (Ruby 1.8.6)</p>
+
+<h2 id="benching">Benching</h2>
+
+<p>I tested different scenarios. How long takes the initialization of a new
+Object. What about the first access and what about consequtive accesses. I
+benched them for each implementation strategy and tried to set the number of
+iterations to a maximum runtime of 2 seconds. As you would guess, testing the
+setting of a new value does not make much sense. It tried anyway and they are
+equal - so forget about it.</p>
+
+<table>
+<thead><tr>
+<th>Strategy</th>
+<th>Initialization (1,000,000)</th>
+<th>First Access (100,000)</th>
+<th>Consequtive Access (4,000,000)</th>
+</tr></thead>
+<tbody>
+<tr><td>Initializer</td><td>2.0</td><td>0.05</td><td>1.3</td></tr>
+<tr><td>Custom Setter</td><td>0.7</td><td>0.1</td><td>2.0</td></tr>
+</tbody>
+</table>
+
+<p>What we see is, that ( 0.1 is not close to a maximum value of 2.0 seconds, but
+just wait some lines and ) everything behaves as expected. The first
+implementation is expensive on initialization, the other is more expensive when
+it comes to reading.</p>
+
+<p>I wonder if there is something, that could combine the pros of both concepts.
+As you already see, this one would be a lot more expensive on the first read,
+but there is no such thing as free lunch.</p>
+
+<h2 id="meta-magic">Meta Magic</h2>
+
+<p>Let’s look, what is already there. There is for example ActiveSupport’s Module
+extension called <code class="highlighter-rouge">attr_accessor_with_default</code> - currently only in <a href="http://svn.rubyonrails.org/rails/trunk/activesupport/lib/active_support/core_ext/module/attr_accessor_with_default.rb">the
+trunk</a>.
+But it has two downsides.</p>
 
 <ul>
-  <li>To make this work, you also need to ignore Bitly’s setup instructions and
-point your domain’s DNS record to your own server and not Bitly’s.</li>
-  <li>This works just because Bitly’s slugs are globally uniq and not tied to a
-single domain. So <code class="highlighter-rouge">http://short.com/NArkjI</code> will point to the same URL as
-<code class="highlighter-rouge">http://bit.ly/NArkjI</code>.</li>
-  <li>Every URL, that cannot be matched to your files, will be proxied to bitly.com,
-including <code class="highlighter-rouge">favicon.ico</code> and <code class="highlighter-rouge">robots.txt</code>. Also, this way Bitly may get a bit
-too much information, you might not want to share with them.</li>
-  <li>404 error pages are delivered by Bitly, what might confuse your users. This
-might be fixable with some more configuration.</li>
-  <li>This setup is, of course, slower than the recommended setup where you change
-your DNS record. So do not use it on high traffic sites without further
-investigation.</li>
+  <li>It does not set the actual default value, it just returns on, if there is
+none. This may be right for certain cases, but not for me.</li>
+  <li>It uses <code class="highlighter-rouge">module_eval</code> with a string, and we have <a href="/2007/4/18/performance-of-dynamic-code-invokation">just
+learned</a>, that this will
+not be good in the future</li>
 </ul>
+
+<p>But I used that approach to implement my own idea. Its name is
+<code class="highlighter-rouge">attr_accessor_with_default_setter</code>. This is neither cool nor short, but it</p>
+
+<ul>
+  <li>does not clash with ActiveSupport’s naming and since it provides different
+semantics this would hurt</li>
+  <li>stresses the fact, that it actually sets the default value whenever it was
+accessed</li>
+</ul>
+
+<h3 id="attraccessorwithdefaultsetter"><code class="highlighter-rouge">attr_accessor_with_default_setter</code></h3>
+
+<pre><code>  class Module
+    def attr_accessor_with_default_setter( *syms, &amp;block )
+      raise 'Default value in block required' unless block
+      syms.each do | sym |
+        module_eval do
+          attr_writer( sym )
+          define_method( sym ) do | |
+            class &lt;&lt; self; self; end.class_eval do
+              attr_reader( sym )
+            end
+            if instance_variables.include? "@#{sym}"
+              instance_variable_get( "@#{sym}" )
+            else
+              instance_variable_set( "@#{sym}", block.call )
+            end
+          end
+        end
+      end
+      nil
+    end
+  end
+</code></pre>
+
+<p>The implementation is pretty basic. It mixes the two approaches above. First of
+all it adds an <code class="highlighter-rouge">attr_writer</code> since it cannot hurt and it places a method as
+getter that sets the instance variable to the default value and afterwards
+replaces itself with the general <code class="highlighter-rouge">attr_writer</code>. Of course, somebody could have
+set the instance variable without using the default reader first - therefore
+whe have to check, whether it was already used, before applying the default
+value and that’s it.</p>
+
+<h3 id="the-usage">The Usage</h3>
+
+<pre><code>  class Foo
+    attr_accessor_with_default_setter :bar do
+      Hash.new
+    end
+  end
+</code></pre>
+
+<p>Pretty nice, despite the long name. But it was not my main goal to nice things
+up. Although there is one occasion, where it is actually a lot more DRY. Just
+imagine multiple instance variables that all have the same default value. This
+would become talkative with the other approaches.</p>
+
+<pre><code>  class Solution
+    attr_accessor_with_default_setter :pros, :cons do
+      Array.new
+    end
+  end
+</code></pre>
+
+<h3 id="what-else">What else</h3>
+
+<p>Okay, now it has to run next to the other implementations in my tiny benchmark.
+I will repeat the other values for better comparison:</p>
+
+<table>
+<thead><tr>
+<th>Strategy</th>
+<th>Initialization (1,000,000)</th>
+<th>First Access (100,000)</th>
+<th>Consequtive Access (4,000,000)</th>
+</tr></thead>
+<tbody>
+<tr><td>Initializer</td><td>2.0</td><td>0.05</td><td>1.3</td></tr>
+<tr><td>Custom Setter</td><td>0.7</td><td>0.1</td><td>2.0</td></tr>
+<tr><td>Meta Magic</td><td>0.7</td><td>2.0</td><td>1.3</td></tr>
+</tbody>
+</table>
+
+<p><img src="/assets/2007/4/24/graph.png" alt="Perfomance of Different Default Value Implementations on
+MRI" /></p>
+
+<p>It performs as expected. It is as fast on initialization and consequtive
+accessing as the best in these disciplines. Only one big downside: the first
+access is really slow. It has to <code class="highlighter-rouge">module_eval</code>, reflect on instance variables,
+and define a method. This takes a lot more time.</p>
+
+<h2 id="what-we-have-learned">What we have learned</h2>
+
+<p>There is not single solution to this problem. If you want it fast, you have to
+evaluate the options. But I hope everybody is equipped with the needed
+knowledge now.</p>
+
+<p><strong>Annotation</strong>: The actual results may differ from interpreter to interpreter,
+but the overall / relative values will remain the same.</p>
 
   </div>
 </article>
 
 <div class="previous-next">
   
-    <a class="previous" href="/2012/07/12/monkey-patching-user-in-chiliproject/">&laquo; Monkey-Patching User in ChiliProject</a>
+    <a class="previous" href="/2007/4/18/performance-of-dynamic-code-invokation/">&laquo; Performance of Dynamic Code Invokation</a>
   
   
-    <a class="next" href="/2012/07/17/new-chiliproject-plugin-released-custom-home-path/">New ChiliProject Plugin Released: Custom Home Path &raquo;</a>
+    <a class="next" href="/2007/5/3/ruby-user-group-berlin-contextr/">Ruby User Group Berlin - ContextR &raquo;</a>
   
 </div>
 

@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Static Files And Bitly Proxy On Single Domain - Gregor Schmidt</title>
+  <title>Performance of Dynamic Code Invokation - Gregor Schmidt</title>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="https://www.nach-vorne.eu/2012/07/16/static-files-and-bitly-proxy-on-single-domain/">
+  <link rel="canonical" href="https://www.nach-vorne.eu/2007/4/18/performance-of-dynamic-code-invokation/">
   <link rel="alternate" type="application/atom+xml" title="www.nach-vorne.eu" href="/feeds/atom.xml" />
 </head>
 
@@ -84,84 +84,166 @@
     <div class="page-content">
       <div class="wrapper">
         <article class="post">
-  <h1 class="post-title">Static Files And Bitly Proxy On Single Domain</h1>
+  <h1 class="post-title">Performance of Dynamic Code Invokation</h1>
 
   <p class="post-meta">
-    apache, static-site, and bitly<br/>
+    <br/>
     <a href="/">Gregor Schmidt</a>
     -
-    <abbr class="published" title="2012-07-16 00:00:00 +0200">2012-07-16</abbr>
+    <abbr class="published" title="2007-04-18 00:00:00 +0200">2007-04-18</abbr>
   </p>
 
   <div class="post-content">
-    <p>When having a super short domain name, you’re probably using
-<a href="http://bitly.com">Bitly</a>’s service to run you custom-looking URL shortener with
-full client support and nearly no setup costs.</p>
+    <p>In my new project I need to surround basic method with some wrapping code, which
+should be called dynamically, e.g. not each time, but under certain
+circumstances. In a first implementation by <a href="http://chneukirchen.org/talks/euruko-2005/">Christian
+Neukirchen</a> this was done by adding
+the code in private methods and substituting the core method with code, that
+calls the other ones. Simple and charming.</p>
 
-<p>But then you might ask yourself, why can’t I also have my simple static website
-on the same domain? Well, you can.</p>
+<p>But I will try a different approach. More details will follow later. For now I
+need to now, how to inject new code into a class or better a single object as
+fast as possible. To get the right feeling, a simple message send to the object
+will act as basic measuring unit.</p>
 
-<h2 id="set-up-apache2-to-serve-files-and-short-urls">Set up Apache2 to serve files and short URLs</h2>
+<h3 id="implementations">Implementations</h3>
 
-<p>Using the following Apache VHost configuration, Apache will answer all
-requests locally, that match files within a certain directory. All other
-requests will be proxied to Bitly.</p>
+<p>I came up with these options:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;VirtualHost *:80&gt;
+<ul>
+  <li>wrap your code into a block and call <code class="highlighter-rouge">instance_eval</code> on the object</li>
+  <li>wrap your code into a string and call <code class="highlighter-rouge">instance_eval</code> on the object</li>
+  <li>wrap your code into a method within that class and fetch the corresponding <code class="highlighter-rouge">UnboundMethod</code>.
+Bind that <code class="highlighter-rouge">UnboundMethod</code> to the object and execute it</li>
+  <li>a variation of the former, just include the binding into the bechmark</li>
+</ul>
 
-    # These rules just set up the serving of the static files
-    ServerName short.com
-    DocumentRoot /var/www/short.com
+<p>These result in the following code:</p>
 
-    &lt;Directory /var/www/short.com/&gt;
-        Options FollowSymLinks
-        AllowOverride None
-        Order allow,deny
-        Allow from all
-    &lt;/Directory&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>require 'benchmark'
 
-    # Now we're getting to the interesting parts
-    RewriteEngine On
+class A
+  def a
+    true
+  end
+end
 
-    # Make sure, that / is associated with your index.html document
-    RewriteRule ^/$ /index.html [QSA]
+n = 1_000_000
+Benchmark.bm(30) do | b |
+  instance = A.new
+  b.report( "simple call" ) do
+    n.times { instance.a }
+  end
 
-    # Set's up a conditional rewrite
-    # When a local file is not found
-    RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
-    # the request is proxied to http://bit.ly/
-    RewriteRule ^/(.*)$ http://bit.ly/$1 [P,QSA,L]
-&lt;/VirtualHost&gt;
+  instance = A.new
+  block = lambda { true }
+  b.report( "instance_eval with block" ) do
+    n.times { instance.instance_eval( &amp;amp;block ) }
+  end
+
+  instance = A.new
+  string = "true"
+  b.report( "instance_eval with string" ) do
+    n.times { instance.instance_eval( string ) }
+  end
+
+  method = A.instance_method( :a )
+  instance = A.new
+  bound_method = method.bind( instance )
+  b.report( "bound method" ) do
+    n.times { bound_method.call }
+  end
+
+  method = A.instance_method( :a )
+  instance = A.new
+  b.report( "bind method each time" ) do
+    n.times { method.bind( instance ).call }
+  end
+end
 </code></pre>
 </div>
 
-<p>There are some things to note.</p>
+<p>That was easy…</p>
 
-<ul>
-  <li>To make this work, you also need to ignore Bitly’s setup instructions and
-point your domain’s DNS record to your own server and not Bitly’s.</li>
-  <li>This works just because Bitly’s slugs are globally uniq and not tied to a
-single domain. So <code class="highlighter-rouge">http://short.com/NArkjI</code> will point to the same URL as
-<code class="highlighter-rouge">http://bit.ly/NArkjI</code>.</li>
-  <li>Every URL, that cannot be matched to your files, will be proxied to bitly.com,
-including <code class="highlighter-rouge">favicon.ico</code> and <code class="highlighter-rouge">robots.txt</code>. Also, this way Bitly may get a bit
-too much information, you might not want to share with them.</li>
-  <li>404 error pages are delivered by Bitly, what might confuse your users. This
-might be fixable with some more configuration.</li>
-  <li>This setup is, of course, slower than the recommended setup where you change
-your DNS record. So do not use it on high traffic sites without further
-investigation.</li>
-</ul>
+<h3 id="and-now-the-results">And now the results</h3>
+
+<p>I tested it on Ruby 1.8.6 and Ruby’s YARV trunk (2007-04-12) and JRuby trunk
+(2007-03-31) on my MacBook. First of all the numbers:</p>
+
+<table>
+<thead>
+  <tr>
+    <th></th>
+    <th>Ruby 1.8.6 (MRI)</th>
+    <th>Ruby 1.9 (YARV)</th>
+    <th>JRuby</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>simple call</td>
+    <td><strong>1.0</strong> (0.42)*</td>
+    <td><strong>1.0</strong> (0.25)</td>
+    <td><strong>1.0</strong> (1.40)</td>
+  </tr>
+  <tr>
+    <td>eval with block</td>
+    <td><strong>2.5</strong> (1.08)</td>
+    <td><strong>6.3</strong> (1.57)</td>
+    <td><strong>1.6</strong> (2.28)</td>
+  </tr>
+  <tr>
+    <td>eval with string</td>
+    <td><strong>7.3</strong> (3.06)</td>
+    <td><strong>48</strong> (12.10)</td>
+    <td><strong>26.5</strong> (37.15)</td>
+  </tr>
+  <tr>
+    <td>bound method</td>
+    <td><strong>1.2</strong> (0.49)</td>
+    <td><strong>1.8</strong> (0.45)</td>
+    <td><strong>1.2</strong> (1.73)</td>
+  </tr>
+  <tr>
+    <td>bind method each time</td>
+    <td><strong>2.7</strong> (1.15)</td>
+    <td><strong>4.3</strong> (1.08)</td>
+    <td><strong>3.1</strong> (4.35)</td>
+  </tr>
+</tbody>
+</table>
+
+<p><img src="/assets/2007/4/18/instance_eval_graph.png" alt="All results in a nice graph" /></p>
+
+<p>To make it clear, I did not compare the performance of MRI with YARV or JRuby -
+this is done elsewhere. I also did not optimize JRuby’s perfomance with some
+environment variables (see <a href="http://headius.blogspot.com/2007/04/paving-road-to-jruby-10-performance.html">this
+article</a>
+to see what should be done). First of all, I wouldn’t know which and then it
+wouldn’t change much, because I only compare JRuby with itself. I was only
+interested in the fastest implementation strategie.</p>
+
+<p>And the winner is <strong>bound method</strong>. When I am able to cache the bound methods
+for all objects, then I have nearly no performance impact related to the
+  inclusion of the “foreign code”.</p>
+
+<h3 id="lessons-learned">Lessons learned</h3>
+
+<p>Do not call <code class="highlighter-rouge">instance_eval</code> in YARV or JRuby with a String regularly. No, no,
+no. It looks evil and it is really slow. The only advantage is that no closure
+has to be stored so it may be useful for light dynamic method definitions.</p>
+
+<p>)* The numbers in brackets are seconds, the absolute results printed to stdout.</p>
 
   </div>
 </article>
 
 <div class="previous-next">
   
-    <a class="previous" href="/2012/07/12/monkey-patching-user-in-chiliproject/">&laquo; Monkey-Patching User in ChiliProject</a>
+    <a class="previous" href="/2007/4/15/written-in-ruby-contd/">&laquo; Written in Ruby - contd.</a>
   
   
-    <a class="next" href="/2012/07/17/new-chiliproject-plugin-released-custom-home-path/">New ChiliProject Plugin Released: Custom Home Path &raquo;</a>
+    <a class="next" href="/2007/4/24/attr_accessor-on-steroids/">attr_accessor on Steroids &raquo;</a>
   
 </div>
 

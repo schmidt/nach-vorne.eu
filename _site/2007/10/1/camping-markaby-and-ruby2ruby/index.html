@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Static Files And Bitly Proxy On Single Domain - Gregor Schmidt</title>
+  <title>Camping, Markaby and ruby2ruby - Gregor Schmidt</title>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="https://www.nach-vorne.eu/2012/07/16/static-files-and-bitly-proxy-on-single-domain/">
+  <link rel="canonical" href="https://www.nach-vorne.eu/2007/10/1/camping-markaby-and-ruby2ruby/">
   <link rel="alternate" type="application/atom+xml" title="www.nach-vorne.eu" href="/feeds/atom.xml" />
 </head>
 
@@ -84,84 +84,168 @@
     <div class="page-content">
       <div class="wrapper">
         <article class="post">
-  <h1 class="post-title">Static Files And Bitly Proxy On Single Domain</h1>
+  <h1 class="post-title">Camping, Markaby and ruby2ruby</h1>
 
   <p class="post-meta">
-    apache, static-site, and bitly<br/>
+    <br/>
     <a href="/">Gregor Schmidt</a>
     -
-    <abbr class="published" title="2012-07-16 00:00:00 +0200">2012-07-16</abbr>
+    <abbr class="published" title="2007-10-01 00:00:00 +0200">2007-10-01</abbr>
   </p>
 
   <div class="post-content">
-    <p>When having a super short domain name, you’re probably using
-<a href="http://bitly.com">Bitly</a>’s service to run you custom-looking URL shortener with
-full client support and nearly no setup costs.</p>
+    <p>I wanted to use <a href="http://code.whytheluckystiff.net/markaby">camping</a> to a <a href="http://en.wikipedia.org/wiki/Literate_Programming">literate programming</a> style
+wiki with <a href="http://code.whytheluckystiff.net/markaby">markaby</a> syntax. Literally I wanted to make the followin
+possible:</p>
 
-<p>But then you might ask yourself, why can’t I also have my simple static website
-on the same domain? Well, you can.</p>
+<h3 id="the-goal">The Goal</h3>
 
-<h2 id="set-up-apache2-to-serve-files-and-short-urls">Set up Apache2 to serve files and short URLs</h2>
+<p>Have a wiki page with the following content:</p>
 
-<p>Using the following Apache VHost configuration, Apache will answer all
-requests locally, that match files within a certain directory. All other
-requests will be proxied to Bitly.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>p "This page demonstrates Literate Markaby"
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;VirtualHost *:80&gt;
-
-    # These rules just set up the serving of the static files
-    ServerName short.com
-    DocumentRoot /var/www/short.com
-
-    &lt;Directory /var/www/short.com/&gt;
-        Options FollowSymLinks
-        AllowOverride None
-        Order allow,deny
-        Allow from all
-    &lt;/Directory&gt;
-
-    # Now we're getting to the interesting parts
-    RewriteEngine On
-
-    # Make sure, that / is associated with your index.html document
-    RewriteRule ^/$ /index.html [QSA]
-
-    # Set's up a conditional rewrite
-    # When a local file is not found
-    RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
-    # the request is proxied to http://bit.ly/
-    RewriteRule ^/(.*)$ http://bit.ly/$1 [P,QSA,L]
-&lt;/VirtualHost&gt;
+ruby_code do
+  a = 1 + 1
+  p "Output of a: #{a}"
+end
 </code></pre>
 </div>
 
-<p>There are some things to note.</p>
+<p>And have the following output:</p>
 
-<ul>
-  <li>To make this work, you also need to ignore Bitly’s setup instructions and
-point your domain’s DNS record to your own server and not Bitly’s.</li>
-  <li>This works just because Bitly’s slugs are globally uniq and not tied to a
-single domain. So <code class="highlighter-rouge">http://short.com/NArkjI</code> will point to the same URL as
-<code class="highlighter-rouge">http://bit.ly/NArkjI</code>.</li>
-  <li>Every URL, that cannot be matched to your files, will be proxied to bitly.com,
-including <code class="highlighter-rouge">favicon.ico</code> and <code class="highlighter-rouge">robots.txt</code>. Also, this way Bitly may get a bit
-too much information, you might not want to share with them.</li>
-  <li>404 error pages are delivered by Bitly, what might confuse your users. This
-might be fixable with some more configuration.</li>
-  <li>This setup is, of course, slower than the recommended setup where you change
-your DNS record. So do not use it on high traffic sites without further
-investigation.</li>
-</ul>
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;p&gt;This page demonstrates Literate Markaby&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;a = 1 + 1
+p "Output of a: #{a}"&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Output of a: 2&lt;/p&gt;
+</code></pre>
+</div>
+
+<p>Or it should look like this:</p>
+
+<p>This page demonstrates Literate Markaby</p>
+<pre><code>a = 1 + 1
+p "Output of a: #{a}"</code></pre>
+<p>Output of a: 2</p>
+
+<h3 id="the-tool">The Tool</h3>
+
+<p>Markaby is Markup in Ruby. So the code entered as wiki markup will be eval’ed to
+get the output right. So when I would like to get the contents of the block
+passed to <code class="highlighter-rouge">ruby_code</code> I have to inspect live code. And there is one nice tool,
+that fits this task - <em>ruby2ruby</em>.</p>
+
+<h3 id="the-implementation">The Implementation</h3>
+
+<p>So all there is to do is to write a little camping helper, that implements the
+<code class="highlighter-rouge">ruby_code</code> method and generates the output.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>STRIP_PROC = /^proc \{\n(.*)\n\}$/m
+
+def ruby_code(&amp;block)
+  self.pre do
+    self.code(block.to_ruby.gsub(STRIP_PROC, '\1'))
+  end
+  block.call
+end
+</code></pre>
+</div>
+
+<p>It is pretty easy, when you start in the middle. <code class="highlighter-rouge">block.to_ruby</code> gives you a
+string representation of the given block. Since it is a proc, ruby2ruby
+surrounds it accordingly. In this example the actual value would be</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>proc {
+  a = (1 + 1)
+  p("Output of a: #{a}")
+}
+</code></pre>
+</div>
+
+<p>The <code class="highlighter-rouge">proc</code> is okay, if we would like to execute the code once again, but in this
+case it is too much information. Therefore, the regular expression and <code class="highlighter-rouge">gsub</code>
+remove these characters. This string is then surrounded with html code and pre
+blocks, so it is marked up semantically.</p>
+
+<p>I tested this code in a separte script with marbaky and ruby2ruby.</p>
+
+<h3 id="the-stumbling-block">The stumbling block</h3>
+
+<p>But then, a simple <code class="highlighter-rouge">require 'ruby2ruby'</code> in the targeted camping app, breaks it.
+Strange <code class="highlighter-rouge">Markaby::InvalidXhtmlError</code>s are raised, where no exception was raised
+before. In fact, the occurred at the first call of <code class="highlighter-rouge">tag!</code> with attribute
+arguments. Since I was not able to track this down, I send my question to the
+<a href="http://rubyforge.org/pipermail/camping-list/2007-September/000467.html">camping-list</a> and got the right hint.</p>
+
+<p><code class="highlighter-rouge">ruby2ruby</code> defines <code class="highlighter-rouge">NilClass#method_missing</code> to always return nil, instead of
+raising an exception. A nearby comment calls it an Object-C hack. I call it a
+bad idea. Other applications may rely on this basic behaviour, Camping does.
+Undefining it again, after the requiring <code class="highlighter-rouge">ruby2ruby</code> solved the strange errors.
+But on the other hand, ruby2ruby may rely on the changed behaviour. So this
+could not be it.</p>
+
+<h3 id="a-solution">A solution</h3>
+
+<p>By accident I came up with a working solution. Unfortunately I don’t know why I
+helped, but I guess a certain degree of meta-programming leads to this
+behaviour. Add a definition of <code class="highlighter-rouge">tag!</code> to your application and everthing is fine.
+This will look loke the following:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class MyApp::Mab
+  def tag!(*g,&amp;b)
+    super
+  end
+end
+</code></pre>
+</div>
+
+<h3 id="get-it-for-free">Get it for free</h3>
+
+<p>If you now think, why should I solve that again, You already did, you are right.
+You can get all the fixes and methods for free, now. To use the code, simply add
+an <code class="highlighter-rouge">include LiterateMarkaby</code> to your application’s module. That’s it.</p>
+
+<p>Ahh, of course you need to copy the following lines as well..</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>require "ruby2ruby"
+
+module LiterateMarkaby
+  STRIP_PROC = /^proc \{\n(.*)\n\}$/m
+  def self.included(base)
+    base.const_get(:Mab).class_eval do
+      def tag!(*g,&amp;b)
+        super
+      end
+    end
+    base.const_get(:Helpers).class_eval do
+      def ruby_code(&amp;block)
+        self.pre do
+          self.code(block.to_ruby.gsub(STRIP_PROC, '\1'))
+        end
+        block.call
+      end
+    end
+  end
+end
+</code></pre>
+</div>
+
+<p>As you can see: even more meta programming. The first reason: Helpers need to be
+defined directly within the applications helper module. Otherwise Markaby does
+not find them. And the other reason was already discussed, we need a <code class="highlighter-rouge">Mab#tag!</code>
+in our module.</p>
+
+<p>There is only one thing better than meta-magic, even more meta-magic.</p>
+
 
   </div>
 </article>
 
 <div class="previous-next">
   
-    <a class="previous" href="/2012/07/12/monkey-patching-user-in-chiliproject/">&laquo; Monkey-Patching User in ChiliProject</a>
+    <a class="previous" href="/2007/9/13/executable-code-in-usage-examples/">&laquo; Executable code in usage examples</a>
   
   
-    <a class="next" href="/2012/07/17/new-chiliproject-plugin-released-custom-home-path/">New ChiliProject Plugin Released: Custom Home Path &raquo;</a>
+    <a class="next" href="/2007/10/5/october-s-ruby-user-group-meeting/">October's Ruby User Group Meeting &raquo;</a>
   
 </div>
 

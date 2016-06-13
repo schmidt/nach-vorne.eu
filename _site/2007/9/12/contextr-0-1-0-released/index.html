@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Static Files And Bitly Proxy On Single Domain - Gregor Schmidt</title>
+  <title>ContextR 0.1.0 released - Gregor Schmidt</title>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="https://www.nach-vorne.eu/2012/07/16/static-files-and-bitly-proxy-on-single-domain/">
+  <link rel="canonical" href="https://www.nach-vorne.eu/2007/9/12/contextr-0-1-0-released/">
   <link rel="alternate" type="application/atom+xml" title="www.nach-vorne.eu" href="/feeds/atom.xml" />
 </head>
 
@@ -84,84 +84,145 @@
     <div class="page-content">
       <div class="wrapper">
         <article class="post">
-  <h1 class="post-title">Static Files And Bitly Proxy On Single Domain</h1>
+  <h1 class="post-title">ContextR 0.1.0 released</h1>
 
   <p class="post-meta">
-    apache, static-site, and bitly<br/>
+    <br/>
     <a href="/">Gregor Schmidt</a>
     -
-    <abbr class="published" title="2012-07-16 00:00:00 +0200">2012-07-16</abbr>
+    <abbr class="published" title="2007-09-12 00:00:00 +0200">2007-09-12</abbr>
   </p>
 
   <div class="post-content">
-    <p>When having a super short domain name, you’re probably using
-<a href="http://bitly.com">Bitly</a>’s service to run you custom-looking URL shortener with
-full client support and nearly no setup costs.</p>
+    <p>In the last weeks it was a bit silent around this page, my master’s thesis and
+ContextR. This will change again and the start will be a new version of
+ContextR, that was just released.</p>
 
-<p>But then you might ask yourself, why can’t I also have my simple static website
-on the same domain? Well, you can.</p>
+<p>It features a reimplementation from the scratch including more dynamicy, a
+totally different syntax and some more niceties, that allow easier use of it in
+most cases. For demo purposes although, the syntax became slightly more
+explicit, but this will not be much of a problem.</p>
 
-<h2 id="set-up-apache2-to-serve-files-and-short-urls">Set up Apache2 to serve files and short URLs</h2>
+<p>There were several downside of the old syntax and I would like to list the here
+for future reference.</p>
 
-<p>Using the following Apache VHost configuration, Apache will answer all
-requests locally, that match files within a certain directory. All other
-requests will be proxied to Bitly.</p>
+<ul>
+  <li>it was impossible to refactor wrapper code into layer scoped functions</li>
+  <li>it was not easily possible to reuse code in multiple layers or for multiple functions</li>
+  <li>it was not possible to remove behaviour definitions, since there was no way of addressing a single chunk of attached behaviour</li>
+  <li>syntax highlighting does not work for wrapper definitions</li>
+</ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;VirtualHost *:80&gt;
+<h2 id="the-shiny-new-api">The shiny new API</h2>
 
-    # These rules just set up the serving of the static files
-    ServerName short.com
-    DocumentRoot /var/www/short.com
+<p>From now on the layer specific behaviour is wrapped in plain old ruby modules
+(no more blocks). The introductory Education/Student example looks now like the
+following</p>
 
-    &lt;Directory /var/www/short.com/&gt;
-        Options FollowSymLinks
-        AllowOverride None
-        Order allow,deny
-        Allow from all
-    &lt;/Directory&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>class Student &lt; Struct.new(:name, :address, :university)
+  def to_s
+    name
+  end
+end
 
-    # Now we're getting to the interesting parts
-    RewriteEngine On
-
-    # Make sure, that / is associated with your index.html document
-    RewriteRule ^/$ /index.html [QSA]
-
-    # Set's up a conditional rewrite
-    # When a local file is not found
-    RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
-    # the request is proxied to http://bit.ly/
-    RewriteRule ^/(.*)$ http://bit.ly/$1 [P,QSA,L]
-&lt;/VirtualHost&gt;
+class University &lt; Struct.new(:name, :address)
+  def to_s
+    name
+  end
+end
 </code></pre>
 </div>
 
-<p>There are some things to note.</p>
+<p>This is a pretty simple class layout. But if you would like to get the address
+of a student under certain circumstances and the educational body in others or
+sometimes both, the new API comes into play.</p>
 
-<ul>
-  <li>To make this work, you also need to ignore Bitly’s setup instructions and
-point your domain’s DNS record to your own server and not Bitly’s.</li>
-  <li>This works just because Bitly’s slugs are globally uniq and not tied to a
-single domain. So <code class="highlighter-rouge">http://short.com/NArkjI</code> will point to the same URL as
-<code class="highlighter-rouge">http://bit.ly/NArkjI</code>.</li>
-  <li>Every URL, that cannot be matched to your files, will be proxied to bitly.com,
-including <code class="highlighter-rouge">favicon.ico</code> and <code class="highlighter-rouge">robots.txt</code>. Also, this way Bitly may get a bit
-too much information, you might not want to share with them.</li>
-  <li>404 error pages are delivered by Bitly, what might confuse your users. This
-might be fixable with some more configuration.</li>
-  <li>This setup is, of course, slower than the recommended setup where you change
-your DNS record. So do not use it on high traffic sites without further
-investigation.</li>
-</ul>
+<div class="highlighter-rouge"><pre class="highlight"><code>module AddressMethods
+  def to_s
+    yield(:next) + " (" + yield(:receiver).address + ")"
+  end
+end
+
+class University
+  include AddressMethods =&gt; :address
+end
+
+class Student
+  module EducationMethods
+    def to_s
+      yield(:next) + "; " + yield(:receiver).university.to_s
+    end
+  end
+
+  include AddressMethods =&gt; :address
+  include EducationMethods =&gt; :education
+end
+</code></pre>
+</div>
+
+<p>So what happened here? We are using plain old modules to define additional
+behaviour for our Student and Education classes. Just like we had done without
+ContextR - despite the strange <code class="highlighter-rouge">yield(:next)</code> instead of super and
+<code class="highlighter-rouge">yield(:receiver)</code> instead of <code class="highlighter-rouge">self</code>. I will try to get rid of these strangeness
+in one of the next iterations. Until then we have to live with them. <code class="highlighter-rouge">include</code>
+takes a Hash as argument now, which gives the layer name in which the code
+should be used.</p>
+
+<h2 id="so-what-does-this-do">So what does this do?</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>hpi = University.new("HPI", "Potsdam")
+me = Student.new("Gregor", "Berlin", hpi)
+
+me.to_s #=&gt; "Gregor Schmidt"
+hpi.to_s #=&gt; "HPI"
+
+ContextR::with_layer :address do
+  me.to_s #=&gt; "Gregor Schmidt (Berlin)"
+  hpi.to_s #=&gt; "HPI (Potsdam)"
+end
+
+ContextR::with_layer :education do
+  me.to_s #=&gt; "Gregor Schmidt; HPI"
+
+  ContextR::with_layers :address do
+    me.to_s #=&gt; "Gregor Schmidt (Berlin); HPI (Potsdam)"
+  end
+end
+</code></pre>
+</div>
+
+<p>The main difference in the new API is the different way of defining layer
+specific behaviour. The actual use of the different layers remains the same. In
+this short example we can already make use of the new possiblity to reuse code.</p>
+
+<p>Hopefully I will demostrate more useful examples in the nearer future.</p>
+
+<h2 id="where-can-i-buy-it">Where can I buy it?</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo gem install contextr
+</code></pre>
+</div>
+
+<p>To use it in your project you have to add these three lines to your code</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>require 'rubygems'
+gem 'contextr'
+require 'contextr'
+</code></pre>
+</div>
+
+<p>I’m not sure, why I need three lines and not just the first and one of the
+others. Perhaps one of you has an idea.</p>
 
   </div>
 </article>
 
 <div class="previous-next">
   
-    <a class="previous" href="/2012/07/12/monkey-patching-user-in-chiliproject/">&laquo; Monkey-Patching User in ChiliProject</a>
+    <a class="previous" href="/2007/6/28/ruby-is-cheating-on-super/">&laquo; Ruby is cheating on super</a>
   
   
-    <a class="next" href="/2012/07/17/new-chiliproject-plugin-released-custom-home-path/">New ChiliProject Plugin Released: Custom Home Path &raquo;</a>
+    <a class="next" href="/2007/9/12/euruko-2007/">EuRuKo 2007 &raquo;</a>
   
 </div>
 

@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Static Files And Bitly Proxy On Single Domain - Gregor Schmidt</title>
+  <title>structured_warnings Highlights - Gregor Schmidt</title>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="https://www.nach-vorne.eu/2012/07/16/static-files-and-bitly-proxy-on-single-domain/">
+  <link rel="canonical" href="https://www.nach-vorne.eu/2008/2/22/structured_warnings-highlights/">
   <link rel="alternate" type="application/atom+xml" title="www.nach-vorne.eu" href="/feeds/atom.xml" />
 </head>
 
@@ -84,84 +84,87 @@
     <div class="page-content">
       <div class="wrapper">
         <article class="post">
-  <h1 class="post-title">Static Files And Bitly Proxy On Single Domain</h1>
+  <h1 class="post-title">structured_warnings Highlights</h1>
 
   <p class="post-meta">
-    apache, static-site, and bitly<br/>
+    <br/>
     <a href="/">Gregor Schmidt</a>
     -
-    <abbr class="published" title="2012-07-16 00:00:00 +0200">2012-07-16</abbr>
+    <abbr class="published" title="2008-02-22 00:00:00 +0100">2008-02-22</abbr>
   </p>
 
   <div class="post-content">
-    <p>When having a super short domain name, you’re probably using
-<a href="http://bitly.com">Bitly</a>’s service to run you custom-looking URL shortener with
-full client support and nearly no setup costs.</p>
+    <p>After my short Announcement yesterday, I’d like to go on an name some of the
+highlights.</p>
 
-<p>But then you might ask yourself, why can’t I also have my simple static website
-on the same domain? Well, you can.</p>
+<p>Besides the basic functionality proposed in <a href="http://www.oreillynet.com/ruby/blog/2008/02/structured_warnings_now.html">the original
+article</a>,
+it has some more neat features, that make the life of its users enjoyable and
+fun.</p>
 
-<h2 id="set-up-apache2-to-serve-files-and-short-urls">Set up Apache2 to serve files and short URLs</h2>
+<p>So you better start using structured_warnings now.</p>
 
-<p>Using the following Apache VHost configuration, Apache will answer all
-requests locally, that match files within a certain directory. All other
-requests will be proxied to Bitly.</p>
+<h3 id="dynamic-scoping">Dynamic scoping</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;VirtualHost *:80&gt;
+<p>Using the block syntax to disable warnings provides a dynamic scope of
+deactivation. Not only everything within the block will raise no warning, but
+every piece of code, that is accessed from there on. This can become very
+powerful for certain uses.</p>
 
-    # These rules just set up the serving of the static files
-    ServerName short.com
-    DocumentRoot /var/www/short.com
+<h3 id="last-one-wins">Last one wins</h3>
 
-    &lt;Directory /var/www/short.com/&gt;
-        Options FollowSymLinks
-        AllowOverride None
-        Order allow,deny
-        Allow from all
-    &lt;/Directory&gt;
+<p>You never know exactly, so deactivating a warning for a dynamic scope may be
+overridden by enabling it again in a deeper scope and the other way round.</p>
 
-    # Now we're getting to the interesting parts
-    RewriteEngine On
+<h3 id="warner-architecture">Warner architecture</h3>
 
-    # Make sure, that / is associated with your index.html document
-    RewriteRule ^/$ /index.html [QSA]
+<p>Each warning is passed to a warner instance, which it there to format the
+information, which is put to stdout. This warner may be changed for –again – a
+dynamic scope. This way you may instruct your favourite web framework to use a
+specific warner, that fetches all the information and writes it to a database
+instead of stdout.</p>
 
-    # Set's up a conditional rewrite
-    # When a local file is not found
-    RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
-    # the request is proxied to http://bit.ly/
-    RewriteRule ^/(.*)$ http://bit.ly/$1 [P,QSA,L]
-&lt;/VirtualHost&gt;
-</code></pre>
-</div>
+<p>Perhaps you want to have warnings in your merchant library to be to you via
+twitter message. Who knows? It will be pretty easy. Just have a look at the
+warner that is used for the test assertions. It will give you a good start.</p>
 
-<p>There are some things to note.</p>
+<h3 id="inheritance-done-right">Inheritance done right</h3>
 
-<ul>
-  <li>To make this work, you also need to ignore Bitly’s setup instructions and
-point your domain’s DNS record to your own server and not Bitly’s.</li>
-  <li>This works just because Bitly’s slugs are globally uniq and not tied to a
-single domain. So <code class="highlighter-rouge">http://short.com/NArkjI</code> will point to the same URL as
-<code class="highlighter-rouge">http://bit.ly/NArkjI</code>.</li>
-  <li>Every URL, that cannot be matched to your files, will be proxied to bitly.com,
-including <code class="highlighter-rouge">favicon.ico</code> and <code class="highlighter-rouge">robots.txt</code>. Also, this way Bitly may get a bit
-too much information, you might not want to share with them.</li>
-  <li>404 error pages are delivered by Bitly, what might confuse your users. This
-might be fixable with some more configuration.</li>
-  <li>This setup is, of course, slower than the recommended setup where you change
-your DNS record. So do not use it on high traffic sites without further
-investigation.</li>
-</ul>
+<p>Instead of redefining the <code class="highlighter-rouge">Kernel#warn</code> method directly, structured_warnings
+simply defines its own <code class="highlighter-rouge">warn</code>. The module is mixed into Object, so that every
+warn will go to this implementation first. After collecting all the necessary
+information, checking if the current warning is not disabled and formatting the
+output, the resulting message is passed on to the base implementation.</p>
+
+<p>This way it is possible to add other extensions to you warning mechanism, you
+may freely redirect stderr to whatever you want. structured_warnings <code class="highlighter-rouge">warn</code> will
+just do, what it is supposed to.</p>
+
+<h3 id="fully-documented-sources">Fully documented sources</h3>
+
+<p>Today I finished the documentation part. Now each and every method, public or
+not is documented. Just have a look at the <a href="http://rug-b.rubyforge.org/structured_warnings/rdoc">RDoc generated API
+site</a>.</p>
+
+<h3 id="performance">Performance</h3>
+
+<p>Come on. The main goal is to avoid the use of code, that raises warnings. With
+the help of this library it is as easy as it gets to do that. A warning should
+always be an exception (not in the sense of the Ruby class, but in the sense of
+“not common”), so who will be concerned about performance.</p>
+
+<p>The only thing I can tell you is, that structured_warnings will slow down calls
+to <code class="highlighter-rouge">warn</code> but it will not slow down your whole code and that is what counts.</p>
 
   </div>
 </article>
 
 <div class="previous-next">
   
-    <a class="previous" href="/2012/07/12/monkey-patching-user-in-chiliproject/">&laquo; Monkey-Patching User in ChiliProject</a>
+    <a class="previous" href="/2008/2/21/ann-structured_warnings-0-1-0-released/">&laquo; [Ann] structured_warnings 0.1.0 released</a>
   
   
-    <a class="next" href="/2012/07/17/new-chiliproject-plugin-released-custom-home-path/">New ChiliProject Plugin Released: Custom Home Path &raquo;</a>
+    <a class="next" href="/2008/2/27/rake-quickies/">Quick Rake Goodies &raquo;</a>
   
 </div>
 

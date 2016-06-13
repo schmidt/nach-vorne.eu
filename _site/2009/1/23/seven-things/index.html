@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Static Files And Bitly Proxy On Single Domain - Gregor Schmidt</title>
+  <title>Seven Things - Gregor Schmidt</title>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="https://www.nach-vorne.eu/2012/07/16/static-files-and-bitly-proxy-on-single-domain/">
+  <link rel="canonical" href="https://www.nach-vorne.eu/2009/1/23/seven-things/">
   <link rel="alternate" type="application/atom+xml" title="www.nach-vorne.eu" href="/feeds/atom.xml" />
 </head>
 
@@ -84,84 +84,62 @@
     <div class="page-content">
       <div class="wrapper">
         <article class="post">
-  <h1 class="post-title">Static Files And Bitly Proxy On Single Domain</h1>
+  <h1 class="post-title">Seven Things</h1>
 
   <p class="post-meta">
-    apache, static-site, and bitly<br/>
+    <br/>
     <a href="/">Gregor Schmidt</a>
     -
-    <abbr class="published" title="2012-07-16 00:00:00 +0200">2012-07-16</abbr>
+    <abbr class="published" title="2009-01-23 00:00:00 +0100">2009-01-23</abbr>
   </p>
 
   <div class="post-content">
-    <p>When having a super short domain name, you’re probably using
-<a href="http://bitly.com">Bitly</a>’s service to run you custom-looking URL shortener with
-full client support and nearly no setup costs.</p>
+    <p>It was way too long ago, that this site was updated. Sorry for that. Let’s use
+<a href="http://upstream-berlin.com/2009/01/22/seven-things/">this meme</a> as opportunity
+to start again.</p>
 
-<p>But then you might ask yourself, why can’t I also have my simple static website
-on the same domain? Well, you can.</p>
-
-<h2 id="set-up-apache2-to-serve-files-and-short-urls">Set up Apache2 to serve files and short URLs</h2>
-
-<p>Using the following Apache VHost configuration, Apache will answer all
-requests locally, that match files within a certain directory. All other
-requests will be proxied to Bitly.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;VirtualHost *:80&gt;
-
-    # These rules just set up the serving of the static files
-    ServerName short.com
-    DocumentRoot /var/www/short.com
-
-    &lt;Directory /var/www/short.com/&gt;
-        Options FollowSymLinks
-        AllowOverride None
-        Order allow,deny
-        Allow from all
-    &lt;/Directory&gt;
-
-    # Now we're getting to the interesting parts
-    RewriteEngine On
-
-    # Make sure, that / is associated with your index.html document
-    RewriteRule ^/$ /index.html [QSA]
-
-    # Set's up a conditional rewrite
-    # When a local file is not found
-    RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
-    # the request is proxied to http://bit.ly/
-    RewriteRule ^/(.*)$ http://bit.ly/$1 [P,QSA,L]
-&lt;/VirtualHost&gt;
-</code></pre>
-</div>
-
-<p>There are some things to note.</p>
+<p>These are the rules:</p>
 
 <ul>
-  <li>To make this work, you also need to ignore Bitly’s setup instructions and
-point your domain’s DNS record to your own server and not Bitly’s.</li>
-  <li>This works just because Bitly’s slugs are globally uniq and not tied to a
-single domain. So <code class="highlighter-rouge">http://short.com/NArkjI</code> will point to the same URL as
-<code class="highlighter-rouge">http://bit.ly/NArkjI</code>.</li>
-  <li>Every URL, that cannot be matched to your files, will be proxied to bitly.com,
-including <code class="highlighter-rouge">favicon.ico</code> and <code class="highlighter-rouge">robots.txt</code>. Also, this way Bitly may get a bit
-too much information, you might not want to share with them.</li>
-  <li>404 error pages are delivered by Bitly, what might confuse your users. This
-might be fixable with some more configuration.</li>
-  <li>This setup is, of course, slower than the recommended setup where you change
-your DNS record. So do not use it on high traffic sites without further
-investigation.</li>
+  <li>Link your original tagger(s), and list these rules on your blog.</li>
+  <li>Share seven facts about yourself in the post — some random, some weird.</li>
+  <li>Tag seven people at the end of your post by leaving their names and the links
+to their blogs.</li>
+  <li>Let them know they’ve been tagged by leaving a comment on their blogs and/or
+Twitter.</li>
 </ul>
+
+<p>And here are the facts:</p>
+
+<ol>
+  <li>“The Ruby Ahead” is a more or less obvious variation of “The Road Ahead” - A
+book by Bill Gates covering his thoughts on the development of broad band
+internet, cloud vs. desktop computing and general predictions.</li>
+  <li>I really liked writing blog entries about my master’s thesis, but writing the
+thesis itself was the horror.</li>
+  <li>I still owe <a href="http://chneukirchen.org/">Christian Neukirchen</a> a paper copy of
+my thesis. He gave me permission to use the name
+<a href="http://www.contextr.org/">ContextR</a> and I promised to send him a copy in
+turn.</li>
+  <li>I’m using <a href="http://pons.eu">pons.eu</a> to write this article.</li>
+  <li>I’ve just developed my first mobile website. Everybody complaining about IE6
+should be glad.</li>
+  <li>The movie “Forrest Gump” brings tears to my eyes regularly.</li>
+  <li>I really dislike these kinds of “Stöckchen” or chain letters.</li>
+</ol>
+
+<p>Concerning the 7th fact I will disobey the laws and not torture 7 others with
+this kind of stuff.</p>
 
   </div>
 </article>
 
 <div class="previous-next">
   
-    <a class="previous" href="/2012/07/12/monkey-patching-user-in-chiliproject/">&laquo; Monkey-Patching User in ChiliProject</a>
+    <a class="previous" href="/2008/4/16/done/">&laquo; Done</a>
   
   
-    <a class="next" href="/2012/07/17/new-chiliproject-plugin-released-custom-home-path/">New ChiliProject Plugin Released: Custom Home Path &raquo;</a>
+    <a class="next" href="/2010/03/14/smaller-update/">Smaller Update &raquo;</a>
   
 </div>
 
