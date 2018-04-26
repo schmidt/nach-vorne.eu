@@ -26,7 +26,8 @@ title: Portfolio
 
 <div class="home">
   <ul class="post-list">
-    {% assign gigs = (site.portfolio | sort: 'pos') | reverse %}
+    {% assign gigs = site.portfolio | sort: 'pos' %}
+    {% assign gigs = gigs | reverse %}
     {% for gig in gigs %}
       <li class="post">
         <h2>
