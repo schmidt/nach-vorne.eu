@@ -122,21 +122,19 @@ easier, quicker and more readable.</p>
 <p>I will post it in chunks. At the end of the article you will have a complete
 ruby test.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>require "rubygems"
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require "rubygems"
 require "dust"
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>No magic. Just wait a bit more…</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>unit_tests do
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unit_tests do
+</code></pre></div></div>
 
 <p>This is <code class="highlighter-rouge">dust</code>’s way to say <code class="highlighter-rouge">class FooTest &lt; Test::Unit::TestCase</code>. I really
 like <code class="highlighter-rouge">dust</code>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  def setup
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  def setup
     @base_class = Class.new do
       def method
         "answered in base class"
@@ -150,8 +148,7 @@ like <code class="highlighter-rouge">dust</code>.</p>
     @base_instance = @base_class.new
     @sub_instance = @sub_class.new
   end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The setup method is pretty basic. We are creating a fresh inheritance hierarchy
 for every test method. This will simply prevent undesired side effects. Changes
@@ -162,12 +159,11 @@ the <code class="highlighter-rouge">method</code> method.</p>
 
 <p>For each run, I also instantiate an instance for each class to play with.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  test "Basic setup works" do
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  test "Basic setup works" do
     assert_equal @base_instance.method, "answered in base class"
     assert_equal @sub_instance.method, "answered in sub class"
   end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This is <code class="highlighter-rouge">dust</code>’s way to say <code class="highlighter-rouge">def test_basic_setup_works; ...; end</code>. How do you
 fell?</p>
@@ -175,18 +171,17 @@ fell?</p>
 <p>The code itself is really basic. I’m just making sure, that the setup works and
 nobody changed my tests significantly.</p>
 
-<h2 id="removemethod"><code class="highlighter-rouge">remove_method</code></h2>
+<h2 id="remove_method"><code class="highlighter-rouge">remove_method</code></h2>
 
 <p>Let’s start with the well-behaving twin: <code class="highlighter-rouge">remove_method</code>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  test "remove_method let's you undo method definitions" do
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  test "remove_method let's you undo method definitions" do
     @sub_class.send(:remove_method, :method)
 
     assert_equal @base_instance.method, "answered in base class"
     assert_equal @sub_instance.method, "answered in base class"
   end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>I’m using <code class="highlighter-rouge">send</code> here to circumvent the visibility restrictions. Don’t do this
 at home. Use <code class="highlighter-rouge">class_eval</code> instead. Your children (using 1.9) will be happier.</p>
@@ -199,31 +194,29 @@ redefining a method, to get rid of the warning.</p>
 
 <p>There is not much else to say about it. Sorry.</p>
 
-<h2 id="undefmethod"><code class="highlighter-rouge">undef_method</code></h2>
+<h2 id="undef_method"><code class="highlighter-rouge">undef_method</code></h2>
 
 <p>The less it sounds like plain english, the hackier it is (ref. awk vs. grep).
 <code class="highlighter-rouge">undef_method</code> does not only remove the definition from the current class, but
 causes Exceptions. Let’s have a look at the tests first.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  test "undef_method causes NoMethodErrors" do
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  test "undef_method causes NoMethodErrors" do
     @sub_class.send(:undef_method, :method)
 
     assert_raise(NoMethodError) { @sub_instance.method }
   end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Although, there is a definition in the base class, it is not used. Instead, we
 get an error. Okay, but this might make you think, that now, the method <code class="highlighter-rouge">method</code>
 is totally gone …</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  test "undef_method does not affect superclasses" do
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  test "undef_method does not affect superclasses" do
     @sub_class.send(:undef_method, :method)
 
     assert_equal @base_instance.method, "answered in base class"
   end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>… no it is not. It is still there – in the base class. <code class="highlighter-rouge">undef_method</code>
 actually hides all implementations in superclasses. This somehow breaks the
@@ -231,7 +224,7 @@ inheritance relation. Although sub inherits from base and although base has an
 implementation and sub does not, the happy programmer caused a NoMethodError.
 The following test shall stress this reasoning.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  test "undef_method breaks inheritance" do
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  test "undef_method breaks inheritance" do
     @sub_class.send(:undef_method, :method)
 
     assert @base_class.instance_methods.include?("method")
@@ -240,14 +233,12 @@ The following test shall stress this reasoning.</p>
     # This is the point where you should say: No!
     assert !@sub_instance.respond_to?(:method)
   end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>We are still missing an</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>end
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>end
+</code></pre></div></div>
 
 <p>here. The test is done, it will work on all 1.8 compatible machines.</p>
 
@@ -257,7 +248,7 @@ The following test shall stress this reasoning.</p>
 <code class="highlighter-rouge">instance_methods</code> and their friends – <code class="highlighter-rouge">remove_method</code> and <code class="highlighter-rouge">undef_method</code> could
 be implemented like the following</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class Module
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Module
   def remove_method(name)
     define_method(name) do
       super
@@ -272,8 +263,7 @@ be implemented like the following</p>
     end
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The one passes control flow to an implementation somewhere else, the other
 raises Exceptions. Try it, think about it, and tell me, why one needs
@@ -364,51 +354,6 @@ raises Exceptions. Try it, think about it, and tell me, why one needs
     </ul>
   </div>
 </footer>
-
-<script type="text/javascript">
-  (function () {
-    var gaProperty = "UA-32509964-1",
-        disableStr = 'ga-disable-' + gaProperty,
-        gaq = window._gaq || [];
-
-    var gaOptout = function () {
-      if ( window[disableStr] === true) {
-        alert("Google Analytics tracking has been disabled earlier.");
-      }
-      else {
-        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-        window[disableStr] = true;
-        alert("Thank you for your understanding.\n\nGoogle Analytics is now disabled.");
-      }
-    }
-
-    var gaInstall = function () {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = 'https://ssl.google-analytics.com/ga.js';
-
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    };
-
-    gaq.push(['_setAccount', gaProperty]);
-    gaq.push(['_gat._anonymizeIp']);
-    gaq.push(['_gat._forceSSL']);
-    gaq.push(['_trackPageview']);
-
-    if (document.cookie.indexOf(disableStr + '=true') > -1) {
-      window[disableStr] = true;
-    }
-    else {
-      gaInstall();
-    }
-
-    window._gaq = gaq;
-    window.gaOptout = gaOptout;
-  })();
-</script>
-
 
 
   </body>

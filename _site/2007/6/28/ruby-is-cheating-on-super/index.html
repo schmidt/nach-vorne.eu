@@ -107,7 +107,7 @@ while the current method received some. Besides super being a reserved word it
 
 <p>Please look at the following sample code.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class BaseClass
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class BaseClass
   def method_with_default_parameter(arg0 = :default)
     arg0
   end
@@ -120,15 +120,13 @@ class InheritingClass &lt; BaseClass
       super(arg0) ]
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>And guess what happens when this is called</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>InheritingClass.new.method_with_default_parameter(:custom)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>InheritingClass.new.method_with_default_parameter(:custom)
    # =&gt; [:custom, :default, :custom]
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>In some way this desired behaviour, but not what I would call least suprise.
 Ruby differentiates in this case between <code class="highlighter-rouge">super</code> and <code class="highlighter-rouge">super()</code>. This is only
@@ -223,51 +221,6 @@ to provide a similar behaviour in similar situations.</p>
     </ul>
   </div>
 </footer>
-
-<script type="text/javascript">
-  (function () {
-    var gaProperty = "UA-32509964-1",
-        disableStr = 'ga-disable-' + gaProperty,
-        gaq = window._gaq || [];
-
-    var gaOptout = function () {
-      if ( window[disableStr] === true) {
-        alert("Google Analytics tracking has been disabled earlier.");
-      }
-      else {
-        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-        window[disableStr] = true;
-        alert("Thank you for your understanding.\n\nGoogle Analytics is now disabled.");
-      }
-    }
-
-    var gaInstall = function () {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = 'https://ssl.google-analytics.com/ga.js';
-
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    };
-
-    gaq.push(['_setAccount', gaProperty]);
-    gaq.push(['_gat._anonymizeIp']);
-    gaq.push(['_gat._forceSSL']);
-    gaq.push(['_trackPageview']);
-
-    if (document.cookie.indexOf(disableStr + '=true') > -1) {
-      window[disableStr] = true;
-    }
-    else {
-      gaInstall();
-    }
-
-    window._gaq = gaq;
-    window.gaOptout = gaOptout;
-  })();
-</script>
-
 
 
   </body>

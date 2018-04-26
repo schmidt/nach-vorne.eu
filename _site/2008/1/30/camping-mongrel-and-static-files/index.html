@@ -110,14 +110,13 @@ You may download it with a simple <code class="highlighter-rouge">svn co
 http://code.whytheluckystiff.net/svn/camping/trunk camping</code>. The change is in
 <code class="highlighter-rouge">bin/camping</code> around line 88:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>...
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
 begin
   gem 'mongrel', "&lt;1.1.3"
   require 'mongrel'
   require 'mongrel/camping'
   ...
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>A simple <code class="highlighter-rouge">rake gem</code> and <code class="highlighter-rouge">sudo gem install pkg/camping-1.8.gem</code> will install the
 changes to your system.</p>
@@ -209,51 +208,6 @@ changes to your system.</p>
     </ul>
   </div>
 </footer>
-
-<script type="text/javascript">
-  (function () {
-    var gaProperty = "UA-32509964-1",
-        disableStr = 'ga-disable-' + gaProperty,
-        gaq = window._gaq || [];
-
-    var gaOptout = function () {
-      if ( window[disableStr] === true) {
-        alert("Google Analytics tracking has been disabled earlier.");
-      }
-      else {
-        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-        window[disableStr] = true;
-        alert("Thank you for your understanding.\n\nGoogle Analytics is now disabled.");
-      }
-    }
-
-    var gaInstall = function () {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = 'https://ssl.google-analytics.com/ga.js';
-
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    };
-
-    gaq.push(['_setAccount', gaProperty]);
-    gaq.push(['_gat._anonymizeIp']);
-    gaq.push(['_gat._forceSSL']);
-    gaq.push(['_trackPageview']);
-
-    if (document.cookie.indexOf(disableStr + '=true') > -1) {
-      window[disableStr] = true;
-    }
-    else {
-      gaInstall();
-    }
-
-    window._gaq = gaq;
-    window.gaOptout = gaOptout;
-  })();
-</script>
-
 
 
   </body>

@@ -107,7 +107,7 @@ on the same domain? Well, you can.</p>
 requests locally, that match files within a certain directory. All other
 requests will be proxied to Bitly.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;VirtualHost *:80&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;VirtualHost *:80&gt;
 
     # These rules just set up the serving of the static files
     ServerName short.com
@@ -132,8 +132,7 @@ requests will be proxied to Bitly.</p>
     # the request is proxied to http://bit.ly/
     RewriteRule ^/(.*)$ http://bit.ly/$1 [P,QSA,L]
 &lt;/VirtualHost&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>There are some things to note.</p>
 
@@ -238,51 +237,6 @@ investigation.</li>
     </ul>
   </div>
 </footer>
-
-<script type="text/javascript">
-  (function () {
-    var gaProperty = "UA-32509964-1",
-        disableStr = 'ga-disable-' + gaProperty,
-        gaq = window._gaq || [];
-
-    var gaOptout = function () {
-      if ( window[disableStr] === true) {
-        alert("Google Analytics tracking has been disabled earlier.");
-      }
-      else {
-        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-        window[disableStr] = true;
-        alert("Thank you for your understanding.\n\nGoogle Analytics is now disabled.");
-      }
-    }
-
-    var gaInstall = function () {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = 'https://ssl.google-analytics.com/ga.js';
-
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    };
-
-    gaq.push(['_setAccount', gaProperty]);
-    gaq.push(['_gat._anonymizeIp']);
-    gaq.push(['_gat._forceSSL']);
-    gaq.push(['_trackPageview']);
-
-    if (document.cookie.indexOf(disableStr + '=true') > -1) {
-      window[disableStr] = true;
-    }
-    else {
-      gaInstall();
-    }
-
-    window._gaq = gaq;
-    window.gaOptout = gaOptout;
-  })();
-</script>
-
 
 
   </body>

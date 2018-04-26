@@ -102,9 +102,8 @@ snippets might be useful.</p>
 <p>As you might know, I’m currently writing my master’s thesis – in LaTeX. And
 there is a quick command to calculate the current word count.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>detex mainfile.tex | wc -w
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>detex mainfile.tex | wc -w
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">detex</code> strips all the LaTeX commands out of your document, but it follows
 includes, so all you got in the end is a plain text version on STDOUT. <code class="highlighter-rouge">wc</code> is
@@ -122,14 +121,13 @@ used for chatting. To set a mood message from the command line is pretty easy. I
 will be using the <code class="highlighter-rouge">rb-appscript</code> gem which allows to execute AppleScript from
 Ruby. Consequently this works only on a Mac.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>require 'rubygems'
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'rubygems'
 require 'appscript'
 include Appscript
 
 app("Skype").send_ :script_name =&gt; "Raketask",
                    :command =&gt; "SET PROFILE MOOD_TEXT I'm in Ruby mood"
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The necessary information for this snippet were taken from the <a href="http://rb-skypemac.rubyforge.org/"><code class="highlighter-rouge">rb-skypemac</code>
 gem</a> (the way to talk to Skype via
@@ -149,15 +147,14 @@ Unfortunately, the Ruby API has no official way to access the config file in
 your home directory. But this is not a reason to stop. I’m using the send method
 here to circumvent visibility restrictions.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>require "rubygems"
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require "rubygems"
 require "twitter"
 require "twitter/command"
 
 config = Twitter::Command.send(:create_or_find_config)
 
 Twitter::Base.new(config['email'], config['password']).post("Ruby? Anybody?")
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="all-together-now">All together now</h3>
 
@@ -169,21 +166,20 @@ again) or to fetch my bibtex file from
 and to post the current status to Skype and Twitter. Now we have everything in
 place. So without and further ado, here is a snippet from my Rakefile:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>desc "Counts words of main document"
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>desc "Counts words of main document"
 task :count do
   puts "#{`detex #{PROJECT_NAME} | wc -w`.strip} words in thesis"
   if (file = ENV["file"])
     puts "#{`detex #{file} | wc -w`.strip} words in #{file}"
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This is the main <code class="highlighter-rouge">count</code> task. It simply prints the current word count to the
 command line. Additionally it is possible to count the words in a single file by
 passing in a file parameter (<code class="highlighter-rouge">rake count file=chapter_1.tex</code>).</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>namespace :count do
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>namespace :count do
   def count
     count = `detex #{PROJECT_NAME} | wc -w`.strip
     "Current word count in master's thesis: #{count}"
@@ -210,8 +206,7 @@ passing in a file parameter (<code class="highlighter-rouge">rake count file=cha
                        :command =&gt; "SET PROFILE MOOD_TEXT #{count}"
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This code may look familiar. It is the Skype and Twitter integration. The task
 use a common method <code class="highlighter-rouge">count</code> to get the numbers from the command line.</p>
@@ -303,51 +298,6 @@ use a common method <code class="highlighter-rouge">count</code> to get the numb
     </ul>
   </div>
 </footer>
-
-<script type="text/javascript">
-  (function () {
-    var gaProperty = "UA-32509964-1",
-        disableStr = 'ga-disable-' + gaProperty,
-        gaq = window._gaq || [];
-
-    var gaOptout = function () {
-      if ( window[disableStr] === true) {
-        alert("Google Analytics tracking has been disabled earlier.");
-      }
-      else {
-        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-        window[disableStr] = true;
-        alert("Thank you for your understanding.\n\nGoogle Analytics is now disabled.");
-      }
-    }
-
-    var gaInstall = function () {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = 'https://ssl.google-analytics.com/ga.js';
-
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    };
-
-    gaq.push(['_setAccount', gaProperty]);
-    gaq.push(['_gat._anonymizeIp']);
-    gaq.push(['_gat._forceSSL']);
-    gaq.push(['_trackPageview']);
-
-    if (document.cookie.indexOf(disableStr + '=true') > -1) {
-      window[disableStr] = true;
-    }
-    else {
-      gaInstall();
-    }
-
-    window._gaq = gaq;
-    window.gaOptout = gaOptout;
-  })();
-</script>
-
 
 
   </body>

@@ -107,7 +107,7 @@ class methods in a module, that is mixed into the singleton class of all
 subclasses. This looks a lot like the following code, where <code class="highlighter-rouge">ActiveRecord::Base</code>
 becomes <code class="highlighter-rouge">Base</code> and <code class="highlighter-rouge">validates_presence_of</code> becomes <code class="highlighter-rouge">class_method</code>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class Base
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Base
   module ClassMethods
     def class_method
       "base implementation used"
@@ -118,8 +118,7 @@ becomes <code class="highlighter-rouge">Base</code> and <code class="highlighter
     sub.extend ClassMethods
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Whenever this class is subclassed, the inherited method will be called an the
 class methods added as described. If you want to add more specific behavior to
@@ -132,7 +131,7 @@ extending Objects have an inheritance relation. So let’s use <code class="high
 <p>Define your own <code class="highlighter-rouge">ExtendedBase</code> that you may mix in to your classes, that need
 the additional behavior.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>module ExtendedBase
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module ExtendedBase
   module ClassMethods
     def class_method
       "extended and " + super
@@ -142,8 +141,7 @@ the additional behavior.</p>
     sub.extend ClassMethods
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This code uses the same <code class="highlighter-rouge">ClassMethods</code> technique as the class above, but the
 call back is called <code class="highlighter-rouge">inherited</code> this time. It provides a special implementation
@@ -152,11 +150,10 @@ the more general stuff.</p>
 
 <p>It is used like the following:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class A &lt; Base
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class A &lt; Base
   include ExtendedBase
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="second-option-ad-hoc-usage">Second option: Ad hoc usage</h3>
 
@@ -165,13 +162,12 @@ where you need it. Just open up the metaclass a.k.a. eigenclass a.k.a. singleton
 class and define your methods. Again, you
 may simply delegate to the base implementation using super.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class A &lt; Base
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class A &lt; Base
   def self.class_method
     "custom and " + super
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Hehe. The description was more verbose than the code, but trust me it was still
 correct.</p>
@@ -181,7 +177,7 @@ correct.</p>
 <p>To make clear, that everything works as expected, I will add a test. I assume,
 that all the above definitions are loaded.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>require "rubygems"
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require "rubygems"
 require "dust"
 
 unit_tests do
@@ -190,8 +186,7 @@ unit_tests do
                  A.class_method)
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="conclusion-know-your-inheritance-chain">Conclusion: Know your inheritance chain</h3>
 
@@ -298,51 +293,6 @@ never produce name clashes.</p>
     </ul>
   </div>
 </footer>
-
-<script type="text/javascript">
-  (function () {
-    var gaProperty = "UA-32509964-1",
-        disableStr = 'ga-disable-' + gaProperty,
-        gaq = window._gaq || [];
-
-    var gaOptout = function () {
-      if ( window[disableStr] === true) {
-        alert("Google Analytics tracking has been disabled earlier.");
-      }
-      else {
-        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-        window[disableStr] = true;
-        alert("Thank you for your understanding.\n\nGoogle Analytics is now disabled.");
-      }
-    }
-
-    var gaInstall = function () {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = 'https://ssl.google-analytics.com/ga.js';
-
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    };
-
-    gaq.push(['_setAccount', gaProperty]);
-    gaq.push(['_gat._anonymizeIp']);
-    gaq.push(['_gat._forceSSL']);
-    gaq.push(['_trackPageview']);
-
-    if (document.cookie.indexOf(disableStr + '=true') > -1) {
-      window[disableStr] = true;
-    }
-    else {
-      gaInstall();
-    }
-
-    window._gaq = gaq;
-    window.gaOptout = gaOptout;
-  })();
-</script>
-
 
 
   </body>

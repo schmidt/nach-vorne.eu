@@ -101,23 +101,22 @@ Today I think it was explained as black vodoo, which might be uncomfortable to
 most readers. Therefore, I’ll start again, but the otherway round and everybody
 will love its simplicity.</p>
 
-<h2 id="cacheannotations">cache_annotations</h2>
+<h2 id="cache_annotations">cache_annotations</h2>
 
 <p>With CacheAnnotation you may easily provide your methods with an often needed
 caching. Suppose you are using the following piece of code:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class A
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class A
   def a
     @a ||= "some heavy computing that should be" +
         " done only once"
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This could look so much better:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class A
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class A
   include CacheAnnotation
 
   cached
@@ -125,12 +124,11 @@ end
     "some heavy computing that should be done only once"
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Or even better for single argumented methods:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class A
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class A
   def b(arg0)
     @b ||= {}
     @b[arg0] ||= "some heavy computing in " +
@@ -138,12 +136,11 @@ end
                  "that should be done only once"
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>vs.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class A
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class A
   include CacheAnnotation
 
   cached
@@ -152,15 +149,14 @@ end
     "that should be done only once"
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Behind the scenes, CacheAnnotation replaces the method body with the caching
 code. So the two versions are equal concerning behaviour and speed. If you don’t
 want CacheAnnotation to derive the instance variable’s name from the method
 name, you may supply a custom one:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class A
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class A
   include CacheAnnotation
 
   cached :in =&gt; :@b_cache
@@ -169,14 +165,13 @@ name, you may supply a custom one:</p>
     "that should be done only once"
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>If you want to use CacheAnnotation on the class side, you have to use a
 special technique to add these methods. It is described pretty good on
 http://www.dcmanges.com/blog/27</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class A
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class A
   module ClassMethods
     include CacheAnnotation
 
@@ -188,8 +183,7 @@ http://www.dcmanges.com/blog/27</p>
   end
   self.extend(ClassMethods)
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="final-remarks">Final Remarks</h2>
 
@@ -284,51 +278,6 @@ be stripped of and be used in a declarative way.</p>
     </ul>
   </div>
 </footer>
-
-<script type="text/javascript">
-  (function () {
-    var gaProperty = "UA-32509964-1",
-        disableStr = 'ga-disable-' + gaProperty,
-        gaq = window._gaq || [];
-
-    var gaOptout = function () {
-      if ( window[disableStr] === true) {
-        alert("Google Analytics tracking has been disabled earlier.");
-      }
-      else {
-        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-        window[disableStr] = true;
-        alert("Thank you for your understanding.\n\nGoogle Analytics is now disabled.");
-      }
-    }
-
-    var gaInstall = function () {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = 'https://ssl.google-analytics.com/ga.js';
-
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    };
-
-    gaq.push(['_setAccount', gaProperty]);
-    gaq.push(['_gat._anonymizeIp']);
-    gaq.push(['_gat._forceSSL']);
-    gaq.push(['_trackPageview']);
-
-    if (document.cookie.indexOf(disableStr + '=true') > -1) {
-      window[disableStr] = true;
-    }
-    else {
-      gaInstall();
-    }
-
-    window._gaq = gaq;
-    window.gaOptout = gaOptout;
-  })();
-</script>
-
 
 
   </body>

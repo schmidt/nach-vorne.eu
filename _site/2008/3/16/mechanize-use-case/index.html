@@ -104,9 +104,8 @@ your local latex project.</p>
 
 <h3 id="the-older-solution">The older solution:</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>wget http://www.bibsonomy.org/bib/user/schmidtwisser?items=1000 -O literatur.bib
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget http://www.bibsonomy.org/bib/user/schmidtwisser?items=1000 -O literatur.bib
+</code></pre></div></div>
 
 <p>This solution is simple and was useful for a long time. Unfortunately I recently
 added private bib-entries. Since this solution doesn’t use any authentication,
@@ -118,7 +117,7 @@ it only delivers my public entries.</p>
 need to authenticate, keep the cookie and then fetch my bibliography. Enter
 <a href="http://mechanize.rubyforge.org/">mechanize</a>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>require "rubygems"
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require "rubygems"
 require "active_support"
 require "mechanize"
 
@@ -138,8 +137,7 @@ page = agent.get("/bib/user/#{config[:username]}?items=1000")
 File.open("literatur.bib", "w") do |f|
   f.puts page.body
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>It is so easy, I won’t even explain the code.</p>
 
@@ -231,51 +229,6 @@ credentials are therefore stored in my Home-directory.</p>
     </ul>
   </div>
 </footer>
-
-<script type="text/javascript">
-  (function () {
-    var gaProperty = "UA-32509964-1",
-        disableStr = 'ga-disable-' + gaProperty,
-        gaq = window._gaq || [];
-
-    var gaOptout = function () {
-      if ( window[disableStr] === true) {
-        alert("Google Analytics tracking has been disabled earlier.");
-      }
-      else {
-        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-        window[disableStr] = true;
-        alert("Thank you for your understanding.\n\nGoogle Analytics is now disabled.");
-      }
-    }
-
-    var gaInstall = function () {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = 'https://ssl.google-analytics.com/ga.js';
-
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    };
-
-    gaq.push(['_setAccount', gaProperty]);
-    gaq.push(['_gat._anonymizeIp']);
-    gaq.push(['_gat._forceSSL']);
-    gaq.push(['_trackPageview']);
-
-    if (document.cookie.indexOf(disableStr + '=true') > -1) {
-      window[disableStr] = true;
-    }
-    else {
-      gaInstall();
-    }
-
-    window._gaq = gaq;
-    window.gaOptout = gaOptout;
-  })();
-</script>
-
 
 
   </body>

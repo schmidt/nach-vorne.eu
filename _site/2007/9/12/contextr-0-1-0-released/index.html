@@ -119,7 +119,7 @@ for future reference.</p>
 (no more blocks). The introductory Education/Student example looks now like the
 following</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class Student &lt; Struct.new(:name, :address, :university)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Student &lt; Struct.new(:name, :address, :university)
   def to_s
     name
   end
@@ -130,14 +130,13 @@ class University &lt; Struct.new(:name, :address)
     name
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This is a pretty simple class layout. But if you would like to get the address
 of a student under certain circumstances and the educational body in others or
 sometimes both, the new API comes into play.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>module AddressMethods
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module AddressMethods
   def to_s
     yield(:next) + " (" + yield(:receiver).address + ")"
   end
@@ -157,8 +156,7 @@ class Student
   include AddressMethods =&gt; :address
   include EducationMethods =&gt; :education
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>So what happened here? We are using plain old modules to define additional
 behaviour for our Student and Education classes. Just like we had done without
@@ -170,7 +168,7 @@ should be used.</p>
 
 <h2 id="so-what-does-this-do">So what does this do?</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>hpi = University.new("HPI", "Potsdam")
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hpi = University.new("HPI", "Potsdam")
 me = Student.new("Gregor", "Berlin", hpi)
 
 me.to_s #=&gt; "Gregor Schmidt"
@@ -188,8 +186,7 @@ ContextR::with_layer :education do
     me.to_s #=&gt; "Gregor Schmidt (Berlin); HPI (Potsdam)"
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The main difference in the new API is the different way of defining layer
 specific behaviour. The actual use of the different layers remains the same. In
@@ -199,17 +196,15 @@ this short example we can already make use of the new possiblity to reuse code.<
 
 <h2 id="where-can-i-buy-it">Where can I buy it?</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo gem install contextr
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo gem install contextr
+</code></pre></div></div>
 
 <p>To use it in your project you have to add these three lines to your code</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>require 'rubygems'
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'rubygems'
 gem 'contextr'
 require 'contextr'
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>I’m not sure, why I need three lines and not just the first and one of the
 others. Perhaps one of you has an idea.</p>
@@ -299,51 +294,6 @@ others. Perhaps one of you has an idea.</p>
     </ul>
   </div>
 </footer>
-
-<script type="text/javascript">
-  (function () {
-    var gaProperty = "UA-32509964-1",
-        disableStr = 'ga-disable-' + gaProperty,
-        gaq = window._gaq || [];
-
-    var gaOptout = function () {
-      if ( window[disableStr] === true) {
-        alert("Google Analytics tracking has been disabled earlier.");
-      }
-      else {
-        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-        window[disableStr] = true;
-        alert("Thank you for your understanding.\n\nGoogle Analytics is now disabled.");
-      }
-    }
-
-    var gaInstall = function () {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = 'https://ssl.google-analytics.com/ga.js';
-
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    };
-
-    gaq.push(['_setAccount', gaProperty]);
-    gaq.push(['_gat._anonymizeIp']);
-    gaq.push(['_gat._forceSSL']);
-    gaq.push(['_trackPageview']);
-
-    if (document.cookie.indexOf(disableStr + '=true') > -1) {
-      window[disableStr] = true;
-    }
-    else {
-      gaInstall();
-    }
-
-    window._gaq = gaq;
-    window.gaOptout = gaOptout;
-  })();
-</script>
-
 
 
   </body>

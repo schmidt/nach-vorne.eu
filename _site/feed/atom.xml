@@ -4,7 +4,7 @@
  <title>Gregor Schmidt</title>
  <link href="https://www.nach-vorne.eu/feed/atom.xml" rel="self"/>
  <link href="https://www.nach-vorne.eu"/>
- <updated>2016-06-13T21:24:13+02:00</updated>
+ <updated>2018-04-26T09:50:20+02:00</updated>
  <id>https://www.nach-vorne.eu</id>
  <author>
    <name>Gregor Schmidt</name>
@@ -157,7 +157,7 @@ on the same domain? Well, you can.&lt;/p&gt;
 requests locally, that match files within a certain directory. All other
 requests will be proxied to Bitly.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;VirtualHost *:80&amp;gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;VirtualHost *:80&amp;gt;
 
     # These rules just set up the serving of the static files
     ServerName short.com
@@ -170,20 +170,19 @@ requests will be proxied to Bitly.&lt;/p&gt;
         Allow from all
     &amp;lt;/Directory&amp;gt;
 
-    # Now we&#39;re getting to the interesting parts
+    # Now we're getting to the interesting parts
     RewriteEngine On
 
     # Make sure, that / is associated with your index.html document
     RewriteRule ^/$ /index.html [QSA]
 
-    # Set&#39;s up a conditional rewrite
+    # Set's up a conditional rewrite
     # When a local file is not found
     RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
     # the request is proxied to http://bit.ly/
     RewriteRule ^/(.*)$ http://bit.ly/$1 [P,QSA,L]
 &amp;lt;/VirtualHost&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;There are some things to note.&lt;/p&gt;
 
@@ -225,11 +224,10 @@ which uses &lt;code class=&quot;highlighter-rouge&quot;&gt;require_dependency&lt
 &lt;p&gt;I was running into this problem multiple times and I wanted to note - once and
 for all - you will need the following statements to make it work:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require_dependency &#39;project&#39;
-require_dependency &#39;principal&#39;
-require_dependency &#39;user&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require_dependency 'project'
+require_dependency 'principal'
+require_dependency 'user'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Then everything should be good to go.&lt;/p&gt;
 

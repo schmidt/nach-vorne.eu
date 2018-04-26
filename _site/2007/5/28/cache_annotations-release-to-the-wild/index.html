@@ -114,7 +114,7 @@ on a read-only db or between to <code class="highlighter-rouge">update</code>s.<
 every fibonacci value corresponding to the recursive defintion on
 <a href="http://en.wikipedia.org/wiki/Fibonacci_number">Wikipedia</a>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class Fibonacci
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Fibonacci
   module ClassMethods
     def compute(number)
       if number &lt; 0
@@ -132,8 +132,7 @@ every fibonacci value corresponding to the recursive defintion on
 end
 
 Fibonacci.compute(10) # =&gt; 55
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>But after looking closely to the code you may see, that esp. for larger numbers,
 this defintion is a killer. For each call it executes two recursive other calls
@@ -144,9 +143,9 @@ computed twice, one time in each recursive call. Finally computing
 <p>We have got two options here. Switch to a non-recursive function definition or
 avoid the double computation by caching results.</p>
 
-<h3 id="enter-cacheannotations">Enter cache_annotations</h3>
+<h3 id="enter-cache_annotations">Enter cache_annotations</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>require 'rubygems'
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'rubygems'
 require 'cache_annotations'
 
 class Fibonacci
@@ -168,8 +167,7 @@ class Fibonacci
   end
   self.extend(ClassMethods)
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>That’s it. No need to rewrite, not much more code. The <code class="highlighter-rouge">compute</code> function is
 automagically cached into an instance variable <code class="highlighter-rouge">Hash</code> named <code class="highlighter-rouge">@fibonacci_cache</code>.
@@ -180,9 +178,8 @@ and no additional brain work.</p>
 
 <p>Want to use it on your own? All you need to do is</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo gem install cache_annotations
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo gem install cache_annotations
+</code></pre></div></div>
 
 <p>I just released it, so it may take a day to reach all rubyforge mirrors.
 Detailed information and other examples may be found in the <a href="http://contextr.rubyforge.org/cache_annotations/rdoc/">API
@@ -275,51 +272,6 @@ mail.</p>
     </ul>
   </div>
 </footer>
-
-<script type="text/javascript">
-  (function () {
-    var gaProperty = "UA-32509964-1",
-        disableStr = 'ga-disable-' + gaProperty,
-        gaq = window._gaq || [];
-
-    var gaOptout = function () {
-      if ( window[disableStr] === true) {
-        alert("Google Analytics tracking has been disabled earlier.");
-      }
-      else {
-        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-        window[disableStr] = true;
-        alert("Thank you for your understanding.\n\nGoogle Analytics is now disabled.");
-      }
-    }
-
-    var gaInstall = function () {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = 'https://ssl.google-analytics.com/ga.js';
-
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    };
-
-    gaq.push(['_setAccount', gaProperty]);
-    gaq.push(['_gat._anonymizeIp']);
-    gaq.push(['_gat._forceSSL']);
-    gaq.push(['_trackPageview']);
-
-    if (document.cookie.indexOf(disableStr + '=true') > -1) {
-      window[disableStr] = true;
-    }
-    else {
-      gaInstall();
-    }
-
-    window._gaq = gaq;
-    window.gaOptout = gaOptout;
-  })();
-</script>
-
 
 
   </body>

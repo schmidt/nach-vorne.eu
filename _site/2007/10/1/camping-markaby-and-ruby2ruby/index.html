@@ -102,23 +102,21 @@ possible:</p>
 
 <p>Have a wiki page with the following content:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>p "This page demonstrates Literate Markaby"
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>p "This page demonstrates Literate Markaby"
 
 ruby_code do
   a = 1 + 1
   p "Output of a: #{a}"
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>And have the following output:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;p&gt;This page demonstrates Literate Markaby&lt;/p&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p&gt;This page demonstrates Literate Markaby&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;a = 1 + 1
 p "Output of a: #{a}"&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Output of a: 2&lt;/p&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Or it should look like this:</p>
 
@@ -139,7 +137,7 @@ that fits this task - <em>ruby2ruby</em>.</p>
 <p>So all there is to do is to write a little camping helper, that implements the
 <code class="highlighter-rouge">ruby_code</code> method and generates the output.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>STRIP_PROC = /^proc \{\n(.*)\n\}$/m
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>STRIP_PROC = /^proc \{\n(.*)\n\}$/m
 
 def ruby_code(&amp;block)
   self.pre do
@@ -147,19 +145,17 @@ def ruby_code(&amp;block)
   end
   block.call
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>It is pretty easy, when you start in the middle. <code class="highlighter-rouge">block.to_ruby</code> gives you a
 string representation of the given block. Since it is a proc, ruby2ruby
 surrounds it accordingly. In this example the actual value would be</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>proc {
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>proc {
   a = (1 + 1)
   p("Output of a: #{a}")
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The <code class="highlighter-rouge">proc</code> is okay, if we would like to execute the code once again, but in this
 case it is too much information. Therefore, the regular expression and <code class="highlighter-rouge">gsub</code>
@@ -190,13 +186,12 @@ helped, but I guess a certain degree of meta-programming leads to this
 behaviour. Add a definition of <code class="highlighter-rouge">tag!</code> to your application and everthing is fine.
 This will look loke the following:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class MyApp::Mab
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class MyApp::Mab
   def tag!(*g,&amp;b)
     super
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="get-it-for-free">Get it for free</h3>
 
@@ -206,7 +201,7 @@ an <code class="highlighter-rouge">include LiterateMarkaby</code> to your applic
 
 <p>Ahh, of course you need to copy the following lines as well..</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>require "ruby2ruby"
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require "ruby2ruby"
 
 module LiterateMarkaby
   STRIP_PROC = /^proc \{\n(.*)\n\}$/m
@@ -226,8 +221,7 @@ module LiterateMarkaby
     end
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>As you can see: even more meta programming. The first reason: Helpers need to be
 defined directly within the applications helper module. Otherwise Markaby does
@@ -322,51 +316,6 @@ in our module.</p>
     </ul>
   </div>
 </footer>
-
-<script type="text/javascript">
-  (function () {
-    var gaProperty = "UA-32509964-1",
-        disableStr = 'ga-disable-' + gaProperty,
-        gaq = window._gaq || [];
-
-    var gaOptout = function () {
-      if ( window[disableStr] === true) {
-        alert("Google Analytics tracking has been disabled earlier.");
-      }
-      else {
-        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-        window[disableStr] = true;
-        alert("Thank you for your understanding.\n\nGoogle Analytics is now disabled.");
-      }
-    }
-
-    var gaInstall = function () {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = 'https://ssl.google-analytics.com/ga.js';
-
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    };
-
-    gaq.push(['_setAccount', gaProperty]);
-    gaq.push(['_gat._anonymizeIp']);
-    gaq.push(['_gat._forceSSL']);
-    gaq.push(['_trackPageview']);
-
-    if (document.cookie.indexOf(disableStr + '=true') > -1) {
-      window[disableStr] = true;
-    }
-    else {
-      gaInstall();
-    }
-
-    window._gaq = gaq;
-    window.gaOptout = gaOptout;
-  })();
-</script>
-
 
 
   </body>

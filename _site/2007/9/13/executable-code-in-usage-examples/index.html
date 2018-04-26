@@ -103,9 +103,8 @@ all over to demostrate example output.</p>
 <p>But the reader cannot see the output of a line of code and the line itself at
 once. So you will start writing something like this.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>puts "bla" * 3 # =&gt; "blablabla"
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>puts "bla" * 3 # =&gt; "blablabla"
+</code></pre></div></div>
 
 <p>I think everybody has seen code like this somewhere. Probably in this blog. It
 works okay, the code stays executable and readable, but it is not easy to
@@ -121,13 +120,12 @@ good looking output. So what you want it to have the actual code and the
 expected output side by side. Sound like a test case to me. So you would change
 the above example to the following</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class TestString &lt; Test::Unit::TestCase
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class TestString &lt; Test::Unit::TestCase
   def test_multiply
     assert_equal "blablabla", ("bla" * 3).to_s
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This is a lot of noise, that nobody wants to see. But we’ve got the advantage,
 that our manual can become part of our test suite and it will fail in the
@@ -139,7 +137,7 @@ outdated documentation.</p>
 <p>So I tried to make it less noisy, but keep the test case approach. What I did
 was a bit of metaprogramming and dsl-ing. The result:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>test_class(:TestString)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>test_class(:TestString)
 
 # introduction
 
@@ -153,8 +151,7 @@ example do
   output_of("bla" * 2) == "blabla"
   output_of("bla" * 3) == "blablabla"
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The definition of the <code class="highlighter-rouge">test_class</code> is done only once, I group all examples of a
 file into one test class for example. All examples following a <code class="highlighter-rouge">test_class</code>
@@ -163,7 +160,7 @@ definition are made to <code class="highlighter-rouge">test_*</code> methods wit
 <p>In the above example generates the following code, or to correct it generates an
 object structure, that acts like the following code:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class TestString &lt; Test::Unit::TestCase
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class TestString &lt; Test::Unit::TestCase
   def test_001
     assert_equal "blablub", ("bla" + "blub").to_s
   end
@@ -173,8 +170,7 @@ object structure, that acts like the following code:</p>
     assert_equal "blablabla", ("bla" * 3).to_s
   end
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>At the end there is a fully functional TestClass that is executed automatically
 with all the others. And the execution of your document gives you the
@@ -190,7 +186,7 @@ guess that this could be solved somehow. In my case it is sufficient.</p>
 
 <p>I simply added the following lines to my test_helper.rb</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>module ExampleTest
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module ExampleTest
   module ObjectExtension
     def test_class(name)
       $last_test_class = Class.new(Test::Unit::TestCase)
@@ -233,8 +229,7 @@ end
 class Object
   include ExampleTest::ObjectExtension
 end
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Feel free to use it in your projects and give me feedback if you do. If this
 makes sense to more than three people, I will most likely compile a gem and
@@ -248,15 +243,14 @@ test</a>. Lots
 of comment and some code examples in between. It is a lot more readable with
 syntax highlighting. And what happens when the file is executed?</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ ruby test/test_introduction.rb
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ruby test/test_introduction.rb
 Loaded suite test/test_introduction
 Started
 ...........
 Finished in 0.003204 seconds.
 
 11 tests, 18 assertions, 0 failures, 0 errors
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="addendum">Addendum</h3>
 
@@ -353,51 +347,6 @@ right. I’m not sure.</p>
     </ul>
   </div>
 </footer>
-
-<script type="text/javascript">
-  (function () {
-    var gaProperty = "UA-32509964-1",
-        disableStr = 'ga-disable-' + gaProperty,
-        gaq = window._gaq || [];
-
-    var gaOptout = function () {
-      if ( window[disableStr] === true) {
-        alert("Google Analytics tracking has been disabled earlier.");
-      }
-      else {
-        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-        window[disableStr] = true;
-        alert("Thank you for your understanding.\n\nGoogle Analytics is now disabled.");
-      }
-    }
-
-    var gaInstall = function () {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = 'https://ssl.google-analytics.com/ga.js';
-
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    };
-
-    gaq.push(['_setAccount', gaProperty]);
-    gaq.push(['_gat._anonymizeIp']);
-    gaq.push(['_gat._forceSSL']);
-    gaq.push(['_trackPageview']);
-
-    if (document.cookie.indexOf(disableStr + '=true') > -1) {
-      window[disableStr] = true;
-    }
-    else {
-      gaInstall();
-    }
-
-    window._gaq = gaq;
-    window.gaOptout = gaOptout;
-  })();
-</script>
-
 
 
   </body>
