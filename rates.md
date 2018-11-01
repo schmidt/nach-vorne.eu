@@ -12,8 +12,8 @@ this weakens my position during negotiations.
 
 That is why I have decided to put my rates, discounts, and general business
 principals onto the website. This way everybody can check them upfront and can
-decide whether they can accept these terms or not. To protect myself against
-unlucky negotiations I declare these terms as not being negotiable.
+decide whether they can accept these terms or not. To safe everybody some time,
+I declare these terms non-negotiable.
 
 
 ## Prices and discounts
@@ -29,13 +29,13 @@ unlucky negotiations I declare these terms as not being negotiable.
     <tbody>
         <tr>
             <th>short-term <code>*</code></th>
-            <td>80 €</td>
-            <td>640 €</td>
+            <td>90 €</td>
+            <td>720 €</td>
         </tr>
         <tr>
             <th>long-term <code>**</code></th>
-            <td>70 €</td>
-            <td>560 €</td>
+            <td>75 €</td>
+            <td>600 €</td>
         </tr>
     </tbody>
 </table>
