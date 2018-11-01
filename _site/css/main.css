@@ -436,8 +436,13 @@ td, th {
   line-height: 2em;
   background: #369;
   border: none;
+  color: white !important;
+  border-radius: 5px;
+  text-align: center; }
+
+.cta:hover {
   color: white;
-  border-radius: 5px; }
+  text-decoration: none; }
 
 .hireme {
   padding: 30px;
