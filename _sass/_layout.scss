@@ -373,8 +373,14 @@
   line-height: 2em;
   background: $brand-color;
   border: none;
-  color: white;
+  color: white !important;
   border-radius: 5px;
+
+  text-align: center;
+}
+.cta:hover {
+  color: white;
+  text-decoration: none;
 }
 
 .hireme {
