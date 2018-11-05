@@ -42,7 +42,50 @@ know most of their concepts from other projects.
 Employment
 ----------
 
-#### Planio GmbH <small>09/2015 -- 04/2016 -- Freelance</small>
+#### Planio GmbH <small>09/2017 -- 11/2018 -- Freelance</small>
+
+[Planio](https://plan.io) offers a web-based project management solution based
+on the open source software [Redmine](https://www.redmine.org). During my second
+time at Planio, I was extending the previously developed hybrid Cordova app to
+work with the latest features of Planio and iOS and Android respectively. I was
+working on Planio's EventMachine based Team Chat server to improve its
+responsiveness in high load scenarios. Furthermore I was improving the handling
+of incoming mail in Planio Help Desk and giving the Help Desk configuration a
+revamp to ease setup for new and existing customers.
+
+
+<br/>
+
+
+
+#### Movinga GmbH <small>07/2016 -- 08/2017 -- Freelance</small>
+
+[Movinga](https://www.movinga.com) is a renowned Berlin-based start-up working
+to modernize the removal industry. At the time, Movinga was trying to ramp up
+their development team, so that they would be able to start substituting time
+consuming phone calls by sales agents with tech tools. These would empower the
+client to handle most of the booking process on their own.
+
+I was working as tech lead in the booking funnel team to continuously improve
+and extend the customer facing features, as well as integrating the application
+with different backend systems within the Movinga infrastructure landscape.
+Among other things, I've been personally responsible to integrate new payment
+providers. Furthermore, I was constantly improving the synchronisation of the
+booking funnel with the Movinga backend application used by operators as well as
+Salesforce used by the sales agents.
+
+As tech lead I was taking part in cross-team sessions discussing Movinga's
+future architecture as well as general modes of operation within the whole tech
+team. I was providing insights from my team, spreading our lessons learned to
+other teams, and making sure, that my team will be able to adapt to new features
+of other components in time.
+
+
+<br/>
+
+
+
+#### Planio GmbH <small>09/2015 -- 06/2016 -- Freelance</small>
 
 
 [Planio](https://plan.io) offers a web-based project management solution based
@@ -138,10 +181,11 @@ frontend development.
 #### Finn GmbH <small>04/2008 - 04/2012 -- Employed</small>
 
 Finn GmbH was a web development agency, specialized on Ruby on Rails projects.
-The customers were mainly large companies like Siemens and Telekom. Finn offered
-business process related consulting supported with custom software development.
-During my later days at Finn, we focussed on custom Redmine development to adapt
-its project management capabilities to the customer's needs.
+The customers were mainly large corporations like Siemens and Telekom. Finn
+offered business process related consulting supported with custom software
+development. During my later days at Finn, we focussed on custom Redmine
+development to adapt its project management capabilities to the customer's
+needs.
 
 I was a senior developer, leading teams of varying sizes and being technical
 contact for our customers. I was working with Ruby, Rails and plain JavaScript.
